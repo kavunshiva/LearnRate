@@ -5,6 +5,7 @@ class CreateRatings < ActiveRecord::Migration[5.1]
       t.integer :helpfulness
       t.integer :frustration
       t.integer :time_taken
+      t.integer :review_id
 
       t.timestamps null: false
     end

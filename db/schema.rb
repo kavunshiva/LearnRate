@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170508200445) do
     t.integer "helpfulness"
     t.integer "frustration"
     t.integer "time_taken"
+    t.integer "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,14 +37,13 @@ ActiveRecord::Schema.define(version: 20170508200445) do
     t.string "comment"
     t.integer "user_id"
     t.integer "lesson_id"
-    t.integer "rating_id"
-    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "progress"
+    t.integer "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
