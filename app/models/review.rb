@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :user
-  belongs_to :rating
   belongs_to :lesson
-  belongs_to :tag
+  has_one :rating
+  has_one :tag
 end
