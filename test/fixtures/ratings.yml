@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quality: 1
+  helpfullness: 1
+  frustration: 1
+  time_taken: 1
+
+two:
+  quality: 1
+  helpfullness: 1
+  frustration: 1
+  time_taken: 1
