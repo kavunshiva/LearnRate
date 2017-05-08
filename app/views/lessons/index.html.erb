@@ -1,0 +1,10 @@
+<h1>All Lessons</h1>
+
+<% @lessons.each do |lesson| %>
+
+  <p><% link_to lesson.name, lesson %></p>
+
+<% end %>
+<br>
+
+<%= link_to "Create a new lesson", new_lesson_path %>
