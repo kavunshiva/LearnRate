@@ -2,8 +2,8 @@ class Review < ApplicationRecord
 
   belongs_to :user
   belongs_to :lesson
-  belongs_to :rating
-  belongs_to :tag
+  has_one :rating
+  has_one :tag
 
   validates :comment, presence: { scope: true, message: "must be entered" }
 

@@ -1,7 +1,7 @@
 <% if @review.errors.any? %>
   <ul>
     <% @review.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <li><%= message %></li><br>
     <% end %>
   </ul>
 <% end %>
@@ -12,14 +12,14 @@
 
   <p><%= f.collection_select :lesson_id, Lesson.all, :id, :name %></p>
 
-  <p><%= f.fields_for :ratings do |rating| %></p>
+  <p><%= f.fields_for :rating do |rating| %></p>
     <p><%= rating.label :quality %> <%= rating.select :quality, [1,2,3,4,5,6,7,8,9,10] %></p>
     <p><%= rating.label :helpfulness %> <%= rating.select :helpfulness, [1,2,3,4,5,6,7,8,9,10] %></p>
     <p><%= rating.label :frustration %> <%= rating.select :frustration, [1,2,3,4,5,6,7,8,9,10] %></p>
     <p><%= rating.label :time_taken %> <%= rating.select :time_taken, [1,2,3,4,5,6,7,8,9,10] %></p>
   <% end %>
 
-  <p><%= f.fields_for :tags do |tag| %></p>
+  <p><%= f.fields_for :tag do |tag| %></p>
     <p><%= tag.label :progress %> <%= tag.select :progress, ["Need Help","Working On","Completed"] %></p>
   <% end %>
 
