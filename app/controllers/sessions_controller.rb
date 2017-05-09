@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+before_action :authorize_user, except: [:new, :create]
 skip_before_action :require_login, only: [:new, :index, :create]
 
 layout false

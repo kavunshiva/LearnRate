@@ -1,5 +1,7 @@
 class RatingsController < ApplicationController
 
+  before_action :authorize_user
+
   def index
     @ratings = Rating.all
   end

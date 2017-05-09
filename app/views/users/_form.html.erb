@@ -7,6 +7,11 @@
 <% end %>
 
 <%= form_for @user do |f| %>
+  <h4>Your info:</h4>
+  <%= f.label :first_name %><br>
+  <%= f.text_field :first_name %><br>
+  <%= f.label :last_name %><br>
+  <%= f.text_field :last_name %><br><br>
   <h4>Login info:</h4>
   <%= f.label "Username:" %><br>
   <%= f.text_field :username %><br>
@@ -14,11 +19,6 @@
   <%= f.password_field :password %><br>
   <%= f.label "Confirm your password:" %><br>
   <%= f.password_field :password_confirmation %><br>
-  <h4>Your info:</h4>
-  <%= f.label :first_name %><br>
-  <%= f.text_field :first_name %><br>
-  <%= f.label :last_name %><br>
-  <%= f.text_field :last_name %><br><br>
 
   <%= f.submit %><br>
 

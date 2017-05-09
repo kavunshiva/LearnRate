@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  before_action :authorize_user, except: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create]
+
+  layout false, only: :new
+
   def index
     @users = User.all.sort_by { |user| user.username }
   end
@@ -11,6 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user
     else
       render :new
@@ -39,7 +45,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :username,
-      :password_digest,
+      :password,
+      :password_confirmation,
       :first_name,
       :last_name
       )

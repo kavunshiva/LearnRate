@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20170508200445) do
   create_table "lessons", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "unit_location"
-    t.string "lesson_type"
-    t.string "url"
+    t.string "unit_location", default: "00-00-000"
+    t.string "lesson_type", default: "lab"
+    t.string "url", default: "https://twitter.com/coffee_dad"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,8 +36,7 @@ ActiveRecord::Schema.define(version: 20170508200445) do
     t.string "name"
     t.string "comment"
     t.integer "user_id"
-    t.integer "tag_id"
-
+    t.integer "lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
