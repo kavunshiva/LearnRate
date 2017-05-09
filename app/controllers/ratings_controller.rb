@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
 
   def index
-    @ratings = Rating.all.sort_by { |rating| rating.unit_location }
+    @ratings = Rating.all
   end
 
   def new

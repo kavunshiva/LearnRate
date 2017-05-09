@@ -47,10 +47,6 @@ class ReviewsController < ApplicationController
 
   def review_params(*args)
     params.require(:review).permit(*args)
-    # params.require(:review).permit(:comment, :rating, :lesson_id)
-    # params.require(:review).permit(
-    #   :comment
-    #   )
   end
 
   def rating_params(*args)
