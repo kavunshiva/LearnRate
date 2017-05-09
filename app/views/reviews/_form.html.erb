@@ -8,7 +8,9 @@
 
 <%= form_for @review do |f| %>
 
-  <%= "Add lesson info and username here (without creating new ones of either)" %>
+  <%= "Review by #{current_user.username}" %>
+
+  <p><%= f.collection_select :lesson_id, Lesson.all, :id, :name %></p>
 
   <p><%= f.fields_for :ratings do |rating| %></p>
     <p><%= rating.label :quality %> <%= rating.select :quality, [1,2,3,4,5,6,7,8,9,10] %></p>

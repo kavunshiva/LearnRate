@@ -37,7 +37,8 @@ ActiveRecord::Schema.define(version: 20170508200445) do
     t.string "name"
     t.string "comment"
     t.integer "user_id"
-    t.integer "lesson_id"
+    t.integer "tag_id"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
