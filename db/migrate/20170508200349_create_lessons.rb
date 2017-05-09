@@ -5,6 +5,7 @@ class CreateLessons < ActiveRecord::Migration[5.1]
       t.string :description
       t.string :unit_location
       t.string :lesson_type
+      t.string :url
 
       t.timestamps null: false
     end
