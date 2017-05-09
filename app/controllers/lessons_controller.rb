@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
 
   def index
-    @lessons = Lesson.all
+    @lessons = Lesson.all.sort_by { |lesson| lesson.unit_location }
   end
 
   def new
@@ -10,8 +10,11 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(lesson_params)
-    @lesson.save
-    redirect_to @lesson
+    if @lesson.save
+      redirect_to @lesson
+    else
+      render :new
+    end
   end
 
   def show
@@ -24,8 +27,11 @@ class LessonsController < ApplicationController
 
   def update
     @lesson = Lesson.find_by(id: params[:id])
-    @lesson.save
-    redirect_to @lesson
+    if @lesson.update(lesson_params)
+      redirect_to @lesson
+    else
+      render :edit
+    end
   end
 
   private
