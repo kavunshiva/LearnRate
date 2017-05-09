@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
 
   def require_login
     return head(:forbidden) unless session.include? :user_id
-
+  end
+  
   def location
     @lesson.unit_location.split("-").map(&:to_i)
   end
