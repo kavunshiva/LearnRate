@@ -1,10 +1,31 @@
 <h1>All Lessons</h1>
 
-<% @lessons.each do |lesson| %>
+<table border="2">
 
-  <p><% link_to lesson.name, lesson %></p>
+<tr>
+  <th>Lesson Name</th>
+  <th>Module</th>
+  <th>Unit</th>
+  <th>Number</th>
+  <th>Type</th>
+  <th>Direct Link</th>
+</tr>
+
+<% @lessons.each do |lesson| %>
+<% location = lesson.unit_location.split("-").map(&:to_i) %>
+
+  <tr>
+   <td><%= link_to lesson.name, lesson %></td>
+   <td><%= location[0] %></td>
+   <td><%= location[1] %></td>
+   <td><%= location[2] %></td>
+   <td><%= lesson.lesson_type %></td>
+   <td><%= link_to "Link", "http://#{lesson.url}" %></td>
+  </tr>
 
 <% end %>
+
+</table>
 <br>
 
-<%= link_to "Create a new lesson", new_lesson_path %>
+<%= link_to "Create a New Lesson", new_lesson_path %>

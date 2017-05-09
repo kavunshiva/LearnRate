@@ -1,0 +1,28 @@
+<h1>All Users</h1>
+
+<table border="2">
+
+<tr>
+  <th>Username</th>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th colspan="3">Lessons</th>
+</tr>
+
+<% @users.each do |user| %>
+
+  <tr>
+   <td><%= link_to user.username, user %></td>
+   <td><%= user.first_name %></td>
+   <td><%= user.last_name %></td>
+   <td bgcolor="FF5555"><%= "need help #" %></td>
+   <td bgcolor="FFFF00"><%= "working on #" %></td>
+   <td bgcolor="55FF55"><%= "completed #" %></td>
+  </tr>
+
+<% end %>
+
+</table>
+<br>
+
+<%= link_to "Create a New User", new_user_path %>

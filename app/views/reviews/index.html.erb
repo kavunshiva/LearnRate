@@ -1,0 +1,34 @@
+<h1>All Reviews</h1>
+
+<table border="2">
+
+<tr>
+  <th>Username</th>
+  <th>Lesson Name</th>
+  <th colspan="3">Unit Location</th>
+  <th colspan="4">Ratings (Qual. / Help / Frust. / Time) </th>
+  <th>User's Progress</th>
+</tr>
+
+<% @reviews.each do |review| %>
+<% location = review.lesson.unit_location.split("-").map(&:to_i) %>
+
+  <tr>
+   <td><%= link_to review.username.name, user_path(review.username) %></td>
+   <td><%= link_to review.lesson.name, review %></td>
+   <td><%= location[0] %></td>
+   <td><%= location[1] %></td>
+   <td><%= location[2] %></td>
+   <td><%= review.quality %></td>
+   <td><%= review.helpfulness %></td>
+   <td><%= review.frustration %></td>
+   <td><%= review.time_taken %></td>
+   <td><%= review.tag.progress %></td>
+  </tr>
+
+<% end %>
+
+</table>
+<br>
+
+<%= link_to "Create a New Review", new_review_path %>
