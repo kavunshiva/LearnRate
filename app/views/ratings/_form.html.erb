@@ -1,0 +1,26 @@
+<% if @ratings.errors.any? %>
+  <ul>
+    <% @ratings.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @ratings do |f| %>
+
+  <p><%= "All ratings are from 0-10" %>
+  <p><%= f.label :quality %></p>
+  <p><%= f.label :lesson_type_reading, "Reading" %> <%= f.radio_button :lesson_type, "Reading", :checked => true %>
+
+  <p><%= f.number_field :quality %></p>
+  <p><%= f.label :description %></p>
+  <p><%= f.text_area :description %></p>
+  <p><%= f.label :url %></p>
+  <p><%= f.text_field :url %></p>
+  <p><%= f.label "Module, Unit, Lesson Number (##-##-###)" %></p>
+  <p><%= f.text_field :unit_location %></p>
+  <p><%= f.label "Reading or lab?" %></p>
+  <p><%= f.text_field :ratings_type %></p>
+  <p><%= f.submit %></p>
+
+<% end %>

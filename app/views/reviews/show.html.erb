@@ -1,0 +1,36 @@
+<h1><%= link_to @review.lesson.name, "http://#{@review.lesson.url}" %></h1>
+<h4>Module: <%= location[0] %></h4>
+<h4>Unit: <%= location[1] %></h4>
+<h4>Lesson: <%= location[2] %></h4>
+<h4>Lesson Type: <%= @review.lesson.lesson_type %></h4>
+
+<p><%= @review.lesson.description %></p>
+<br>
+
+<h2>Review by <%= @review.user.username %></h2>
+
+<table border="2">
+
+  <tr>
+    <th>Quality</th>
+    <th>Helpfulness</th>
+    <th>Frustration</th>
+    <th>Time Taken</th>
+  </tr>
+
+  <tr>
+    <td><%= @review.rating.quality %></td>
+    <td><%= @review.rating.helpfulness %></td>
+    <td><%= @review.rating.frustration %></td>
+    <td><%= @review.rating.time_taken %></td>
+  <tr>
+
+</table>
+<br>
+<p>Tagged as: <%= @review.tag.progress %></p>
+<br>
+<p>Comment: <%= @review.comment %></p>
+<br>
+
+<%= link_to "Edit this lesson", edit_lesson_path(@lesson) %><br>
+<%= link_to "Back to All Lessons", lessons_path %>

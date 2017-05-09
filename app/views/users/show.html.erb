@@ -1,0 +1,9 @@
+<h1><%= @user.username %></h1>
+<h2><%= @user.full_name %></h2>
+
+<%= "See your progress (total lessons help/workingon)" %><br>
+<%= "See all your reviews" %><br>
+<br>
+
+<%= link_to "Edit This User", edit_user_path(@user) %><br>
+<%= link_to "Back to All Users", users_path %>

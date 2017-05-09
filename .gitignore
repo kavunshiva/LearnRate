@@ -22,4 +22,7 @@
 
 .byebug_history
 
+
 db/schema.rb
+
+Gemfile.lock

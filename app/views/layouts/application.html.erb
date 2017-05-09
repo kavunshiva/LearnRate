@@ -7,32 +7,57 @@
    <%= csrf_meta_tags %>
    <%= analytics_init if Rails.env.production? %>
    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
+   <style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li { float: left; }
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+</style>
  </head>
  <body>
    <!--  navbar -->
-   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-     <div class="container">
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-           <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
-       <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
-       </div>
-       <div class="navbar-collapse collapse">
-         <ul class="nav navbar-nav">
-             <li><%= link_to "Go to Users", users_path %></li>
-             <li><%= link_to "Go to Reviews", reviews_path %></li>
-             <li><%= link_to "Go to Lessons", lessons_path %></li>
-             <li><%= link_to "Go to Ratings", ratings_path %></li>
-             <li><%= link_to "Go to Tags", tags_path %></li>
-           </ul>
-         </div>
-       </div>
-     </div>
 
+   <nav class="navbar navbar-inverse">
+     <div class="container-fluid">
+
+       <ul class="nav navbar-nav">
+         <li class="active"><a href="#">Home</a></li>
+         <li><%= link_to "Users", users_path %></li>
+         <li><%= link_to "Reviews", reviews_path %></li>
+         <li><%= link_to "Lessons", lessons_path %></li>
+         <li><%= link_to "Ratings", ratings_path %></li>
+         <li><%= link_to "Tags", tags_path %></li>
+         <% if logged_in? %>
+           <li><%= "Welcome #{current_user.username}!" %></li>
+           <li><%= link_to "Log Out", logout_path %></li>
+         <% else %>
+           <li><%= link_to "Log In", login_path %></li>
+         <% end %>
+       </ul>
+
+     </div>
+   </nav>
 
     <div class="container"  role="main">
       <%= yield %>
