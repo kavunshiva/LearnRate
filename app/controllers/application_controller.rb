@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
-<<<<<<< HEAD
   before_action :require_login
   helper_method :location, :current_user, :authorize_user
 
