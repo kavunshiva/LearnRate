@@ -1,4 +1,4 @@
-<h1><%= link_to @review.lesson.name, "http://#{@review.lesson.url}" %></h1>
+<h1><%= link_to @review.lesson.name, "#{@review.lesson.url}" %></h1>
 <% location = @review.lesson.unit_location.split("-").map(&:to_i) %>
 <h4>Module: <%= location[0] %></h4>
 <h4>Unit: <%= location[1] %></h4>
@@ -17,6 +17,7 @@
     <th>Helpfulness</th>
     <th>Frustration</th>
     <th>Time Taken</th>
+    <th>Progress</th>
   </tr>
 
   <tr>
@@ -24,6 +25,7 @@
     <td><%= @review.rating.helpfulness %></td>
     <td><%= @review.rating.frustration %></td>
     <td><%= @review.rating.time_taken %></td>
+    <td><%= @review.tag.progress %></td>
   <tr>
 
 </table>

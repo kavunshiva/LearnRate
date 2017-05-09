@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+  before_action :authorize_user
+
   def index
     @reviews = Review.all.sort_by { |review| review.lesson.unit_location }
   end
@@ -12,14 +14,11 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params(:comment))
     @review.user = current_user
     @review.lesson = Lesson.find_by(id: params[:review][:lesson_id])
-    # @rating = Rating.new(review_params[:ratings])
     @rating = Rating.new(rating_params(:quality, :helpfulness, :frustration, :time_taken))
-    # @tag = Tag.new(rating_params(:progress))
+    @tag = Tag.new(progress: params[:review][:tag][:progress])
     @review.rating = @rating
-    # @review.tag = @tag
+    @review.tag = @tag
     if @review.save
-      @rating.save
-      # @tag.save
       redirect_to @review
     else
       render :new
@@ -36,14 +35,19 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find_by(id: params[:id])
-    if @review.update(review_params)
+    @review.comment = params[:review][:comment]
+    @review.user = current_user
+    @review.lesson = Lesson.find_by(id: params[:review][:lesson_id])
+    @review.rating.update(rating_params(:quality, :helpfulness, :frustration, :time_taken))
+    @review.tag.update(progress: params[:review][:tag][:progress])
+    if @review.save
       redirect_to @review
     else
-      render :edit
+      render :new
     end
   end
 
-  # private
+  private
 
   def review_params(*args)
     params.require(:review).permit(*args)
