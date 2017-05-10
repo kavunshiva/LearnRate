@@ -3,6 +3,8 @@ class SessionsController < ApplicationController
 before_action :authorize_user, except: [:new, :create]
 skip_before_action :require_login, only: [:new, :index, :create]
 
+layout "new_age"
+
 
 
   def index
@@ -25,6 +27,7 @@ skip_before_action :require_login, only: [:new, :index, :create]
   end
 
   def destroy
+    byebug
     session.clear
     redirect_to login_path
   end
