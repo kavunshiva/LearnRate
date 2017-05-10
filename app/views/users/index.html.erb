@@ -1,5 +1,7 @@
 <h1>All Users</h1>
 
+<p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
+
 <table border="2">
 
 <tr>
@@ -7,6 +9,7 @@
   <th>First Name</th>
   <th>Last Name</th>
   <th colspan="3">Lessons</th>
+  <%= "<th>Admin?</th>".html_safe if current_user.admin %>
 </tr>
 
 <% @users.each do |user| %>
@@ -18,6 +21,9 @@
    <td bgcolor="FF5555"><%= "need help #" %></td>
    <td bgcolor="FFFF00"><%= "working on #" %></td>
    <td bgcolor="55FF55"><%= "completed #" %></td>
+   <% if current_user.admin %>
+     <%= "<td>yes</td>".html_safe if user.admin %>
+   <% end %>
   </tr>
 
 <% end %>
@@ -25,4 +31,4 @@
 </table>
 <br>
 
-<%= link_to "Create a New User", new_user_path %>
+<%= link_to "Create a New User", new_user_path if current_user.admin %>
