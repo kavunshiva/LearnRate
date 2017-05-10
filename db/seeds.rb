@@ -23,17 +23,23 @@ def get_data(url)
       if description.present?
         description_text = description.text
       end
+      learn_url_element = page.css('a').find {|element| element.to_html.include?("learn.co")}
+      if learn_url_element.present?
+        learn_url = learn_url_element['href'].split('//').last
+      end
     end
-    if repo["name"].present? && description_text.present?
-      Lesson.create(
-        name: repo["name"],
-        description: description_text
-        # url: page_url
-      )
+    if repo["name"].present? &&
+      description_text.present? &&
+      learn_url.present?
+        lesson = Lesson.create(
+          name: repo["name"],
+          description: description_text,
+          url: learn_url
+        )
     end
   end
 end
 
-for i in 1..50
+for i in 1..10
   get_data(url+i.to_s)
 end
