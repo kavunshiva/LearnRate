@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   resources :welcome, only: :index
 
-  get '/login', to: "sessions#new", as: "login"
+  get '/login', to: "new_age#login", as: "login"
+  get '/signup', to: "new_age#signup", as: "signup"
   # post '/sessions', to: "sessions#create", as: "sessions"
   delete '/logout', to: "sessions#destroy", as: "logout"
 

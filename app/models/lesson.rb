@@ -8,7 +8,7 @@ class Lesson < ApplicationRecord
   validates :name, presence: { scope: true, message: "must be entered" }
   validates :description, presence: { scope: true, message: "must be entered" }
   validates :url, presence: { scope: true, message: "must be entered" }
-  validates_format_of :unit_location, :with => /\d{2}-\d{2}-\d{3}/, message: "must be formatted as ##-##-###"
+  validates_format_of :unit_location, :with => /\d{2}-\d{2}-\d{2}-\d{2}/, message: "must be formatted as ##-##-##-##"
 
   def average_rating
     # time taken

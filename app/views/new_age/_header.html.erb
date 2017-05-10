@@ -1,14 +1,19 @@
 <header>
+
   <div class="container">
     <div class="row">
       <div class="col-sm-7">
         <div class="header-content">
           <div class="header-content-inner">
-            <h1>LearnRate takes the mystery out of labs by adding a crowd sourced difficulty rating.</h1>
-            <a href="/login" class="btn btn-outline btn-xl">Login / Sign up</a>
+
+              <%= yield :index %>
+              <%= yield :login %>
+              <%= yield :signup %>
+            
           </div>
         </div>
     </div>
+
     <div class="col-sm-5">
         <div class="device-container">
           <div class="device-mockup iphone6_plus portrait white">
