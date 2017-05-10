@@ -2,7 +2,7 @@
 
 <h1>All Reviews</h1>
 
-
+<p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
 
 <%= "Sort by Location" %><br>
 <%= "Sort by Most Recent" %><br>
@@ -15,13 +15,14 @@
   <th colspan="3">Unit Location</th>
   <th colspan="4">Ratings (Qual. / Help / Frust. / Time) </th>
   <th>User's Progress</th>
+  <th>Edit</th>
 </tr>
 
 <% @reviews.each do |review| %>
 <% location = review.lesson.unit_location.split("-").map(&:to_i) %>
 
   <tr>
-   <td><%= link_to review.user.username, user_path(review.user.username) %></td>
+   <td><%= link_to review.user.username, user_path(review.user) %></td>
    <td><%= link_to review.lesson.name, review %></td>
    <td><%= location[0] %></td>
    <td><%= location[1] %></td>
@@ -30,6 +31,8 @@
    <td><%= review.rating.helpfulness %></td>
    <td><%= review.rating.frustration %></td>
    <td><%= review.rating.time_taken %></td>
+   <td></td>
+   <td><%= link_to "edit this review", edit_review_path(review) if review.user.id == session[:user_id] || current_user.admin %></td>
   </tr>
 
 <% end %>

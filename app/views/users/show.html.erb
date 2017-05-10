@@ -5,5 +5,5 @@
 <%= "See all your reviews" %><br>
 <br>
 
-<%= link_to "Edit This User", edit_user_path(@user) %><br>
+<%= link_to "Edit This User", edit_user_path(@user) if @user.id == session[:user_id] || current_user.admin %> <br>
 <%= link_to "Back to All Users", users_path %>

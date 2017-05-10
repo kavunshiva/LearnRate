@@ -30,7 +30,13 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find_by(id: params[:id])
+    review = Review.find_by(id: params[:id])
+    if session[:user_id] == review.user.id || current_user.admin
+      @review = review
+    else
+      flash[:notice] = "You must be either be the user who created this review or the admin to edit this review."
+      redirect_to reviews_path
+    end
   end
 
   def update
