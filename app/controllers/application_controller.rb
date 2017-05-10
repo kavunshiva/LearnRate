@@ -11,7 +11,9 @@ class ApplicationController < ActionController::Base
   end
 
   def location
-    @lesson.unit_location.split("-").map(&:to_i)
+    if @lesson.present?
+      @lesson.unit_location.split("-").map(&:to_i)
+    end
   end
 
   def current_user
@@ -36,7 +38,7 @@ class ApplicationController < ActionController::Base
   def authorize_admin
     if !current_user.admin
       flash[:notice] = 'You are not allowed to modify lessons unless you are an admin'
-      redirect_to lesson_path
+      redirect_to lessons_path
     end
   end
 

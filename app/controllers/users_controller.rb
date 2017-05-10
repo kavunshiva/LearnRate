@@ -30,7 +30,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
+    if session[:user_id].to_s == params[:id] || current_user.admin
+      @user = User.find_by(id: params[:id])
+    else
+      flash[:notice] = "You must be either be this user or the admin to edit this user."
+      redirect_to users_path
+    end
   end
 
   def update
