@@ -15,8 +15,4 @@ class User < ApplicationRecord
   validates :first_name, presence: { scope: true, message: "must be entered" }
   validates :last_name, presence: { scope: true, message: "must be entered" }
 
-  # if has_secure_password
-  #   validates_confirmation_of :password
-  # end
-
 end

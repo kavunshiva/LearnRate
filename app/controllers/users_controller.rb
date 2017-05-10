@@ -47,6 +47,7 @@ class UsersController < ApplicationController
       :username,
       :password,
       :password_confirmation,
+      :admin,
       :first_name,
       :last_name
       )
