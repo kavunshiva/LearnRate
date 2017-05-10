@@ -80,7 +80,11 @@ li.dropdown {
 
           <% if logged_in? %>
             <li style="float:right"><%= link_to "Log Out", logout_path, method: "DELETE" %></li>
-            <li style="float:right"><%= link_to "#{current_user.username}", "/welcome" %></li>
+            <% if current_user.admin %>
+              <li style="float:right"><%= link_to "#{current_user.username} (ADMIN)", "/welcome" %></li>
+            <% else %>
+              <li style="float:right"><%= link_to "#{current_user.username}", "/welcome" %></li>
+            <% end %>
           <% else %>
             <li style="float:right"><%= link_to "Log In", login_path %></li>
           <% end %>
