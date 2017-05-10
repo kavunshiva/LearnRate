@@ -18,9 +18,12 @@
   <%= f.label "Enter your password:" %><br>
   <%= f.password_field :password %><br>
   <%= f.label "Confirm your password:" %><br>
-  <%= f.password_field :password_confirmation %><br>
-
-  <%= f.submit %><br>
-
+  <%= f.password_field :password_confirmation %>
+  <p>
+    <%= f.check_box :admin %><%= f.label "    Check if you are an admin" %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
 <% end %>
 <br>

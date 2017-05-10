@@ -1,4 +1,5 @@
 <h1><%= link_to @lesson.name, "http://#{@lesson.url}" %></h1>
+<p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
 <h4>Module: <%= location[0] %></h4>
 <h4>Unit: <%= location[1] %></h4>
 <h4>Lesson: <%= location[2] %></h4>
@@ -10,5 +11,5 @@
 
 <p><%= @lesson.description %></p>
 
-<%= link_to "Edit this lesson", edit_lesson_path(@lesson) %><br>
+<%= link_to "Edit this lesson", edit_lesson_path(@lesson) if current_user.admin %><br>
 <%= link_to "Back to All Lessons", lessons_path %>
