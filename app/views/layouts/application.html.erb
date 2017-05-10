@@ -1,5 +1,5 @@
 <head>
-
+<%= csrf_meta_tags %>
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
@@ -34,8 +34,10 @@
 
     </ul>
     <ul class="nav navbar-nav navbar-right">
-
-      <li><%= button_to "Logout", logout_path, method: :delete %></li>
+      <li><% string = "<span class='glyphicon glyphicon-log-out'></span>" %>
+<%= link_to logout_path, method: :delete  do %>
+  <span class='glyphicon glyphicon-log-out'></span> Logout
+<% end %></li>
 
     </ul>
   </div>
