@@ -3,4 +3,6 @@
 <%= render 'form' %>
 
 <%= link_to "Return to User Without Editing", @user %><br>
+<%= link_to "Delete This User", @user, method: "DELETE" %><br>
+
 <%= link_to "Back to All Users", users_path %>

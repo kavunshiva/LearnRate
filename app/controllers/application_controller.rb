@@ -7,11 +7,14 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    return head(:forbidden) unless session.include? :user_id
+    # return head(:forbidden) unless session.include? :user_id
+    redirect_to root_path unless session.include? :user_id
   end
 
   def location
-    @lesson.unit_location.split("-").map(&:to_i)
+    if @lesson.present?
+      @lesson.unit_location.split("-").map(&:to_i)
+    end
   end
 
   def current_user
@@ -36,7 +39,7 @@ class ApplicationController < ActionController::Base
   def authorize_admin
     if !current_user.admin
       flash[:notice] = 'You are not allowed to modify lessons unless you are an admin'
-      redirect_to lesson_path
+      redirect_to lessons_path
     end
   end
 

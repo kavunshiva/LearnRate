@@ -1,4 +1,7 @@
+<h4>Note: now under new_age#login</h4>
+
 <h1>Login</h1>
+
 
 <% if @user.errors.any? %>
   <ul>
@@ -7,6 +10,9 @@
     <% end %>
   </ul>
 <% end %>
+
+<p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
+
 
 <%= form_tag :sessions do %>
   <%= label_tag :username %>
