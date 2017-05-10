@@ -47,6 +47,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if session[:user_id].to_s == params[:id] || current_user.admin
+      User.find_by(id: params[:id]).destroy
+    else
+      flash[:notice] = "You must be either be this user or the admin to edit this user."
+    end
+    redirect_to users_path
+  end
+
   private
 
   def user_params

@@ -13,6 +13,7 @@
   <th colspan="3">Unit Location</th>
   <th colspan="4">Ratings (Qual. / Help / Frust. / Time) </th>
   <th>User's Progress</th>
+  <th>Edit</th>
 </tr>
 
 <% @reviews.each do |review| %>
@@ -28,7 +29,8 @@
    <td><%= review.rating.helpfulness %></td>
    <td><%= review.rating.frustration %></td>
    <td><%= review.rating.time_taken %></td>
-   <td><%= link_to "edit this review", edit_review_path(review) %></td>
+   <td></td>
+   <td><%= link_to "edit this review", edit_review_path(review) if review.user.id == session[:user_id] || current_user.admin %></td>
   </tr>
 
 <% end %>
