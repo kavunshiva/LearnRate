@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
 
-  root "sessions#new"
+  root "new_age#index"
+  get 'new_age/index', to:"new_age#index"
 
   resources :welcome, only: :index
 

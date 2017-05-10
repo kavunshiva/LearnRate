@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   before_action :authorize_user, except: [:new, :create]
   skip_before_action :require_login, only: [:new, :create]
 
-  layout false, only: :new
+
+  layout "new_age", :only => :new
+
 
   def index
     @users = User.all.sort_by { |user| user.username }
