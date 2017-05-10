@@ -27,7 +27,6 @@ layout "new_age"
   end
 
   def destroy
-    byebug
     session.clear
     redirect_to login_path
   end
