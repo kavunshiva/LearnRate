@@ -41,7 +41,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    
+
     @review = Review.find_by(id: params[:id])
     @review.comment = params[:review][:comment]
     @review.user = current_user
