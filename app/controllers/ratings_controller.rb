@@ -43,7 +43,9 @@ class RatingsController < ApplicationController
       :quality,
       :helpfulness,
       :frustration,
-      :time_taken
+      :time_taken,
+      :time_taken_minutes,
+      :time_taken_hours
       )
   end
 
