@@ -1,4 +1,5 @@
 <head>
+
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -25,7 +26,6 @@
           <li><%= link_to "Users", users_path %></li>
 
         </ul>
-
         <% if logged_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li style="float:right"><% string = "<span class='glyphicon glyphicon-log-out'></span>" %>
@@ -34,9 +34,12 @@
             Logout
             <% end %></li>
 
-          <li><%= link_to "#{current_user.username}#{" (admin)" if current_user.admin}", "/welcome" %></li>
+          <% if current_user.admin %>
+          <li style="float:right"><%= link_to "#{current_user.username} (ADMIN)", "/welcome" %></li>
+        <% else %>
+          <li style="float:right"><%= link_to "#{current_user.username}", "/welcome" %></li>
           <% end %>
-
+          <% end %>
 
         </ul>
       </div>
@@ -44,14 +47,15 @@
   </nav>
 
   <div class="container" role="main">
-  <style>
-    body {background-image: url("/assets/new_age/colorbg.jpg");}
-
-  </style>
-    <div class = "jumbotron">
-    <%= yield %>
+    <style>
+      body {
+        background-image: url("/assets/new_age/colorbg.jpg");
+      }
+    </style>
+    <div class="jumbotron">
+      <%= yield %>
+    </div>
   </div>
-</div>
 
 </body>
 </html>
