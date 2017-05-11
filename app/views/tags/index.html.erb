@@ -1,0 +1,45 @@
+<h1>All Tags</h1>
+
+
+<table border="2">
+
+<tr>
+  <th>Username</th>
+  <th>Lab Name</th>
+  <th colspan="3">Location</th>
+  <th>Progress</th>
+</tr>
+
+<% @tags.each do |tag| %>
+
+<% location = tag.review.lesson.unit_location.split("-") %>
+
+<tr>
+ <td rowspan="2"><%= link_to tag.review.user.username, user_path(tag.review.user) %></td>
+
+ <td rowspan="2"><%= link_to tag.review.lesson.name, lesson_path(tag.review.lesson) %></td>
+
+ <td colspan="3">Module <%= location[0] %></td>
+
+ <% if tag.progress == "Need Help" %>
+    <td rowspan="2" bgcolor="FF5555"><%= tag.progress %></td>
+ <% elsif tag.progress == "Working On" %>
+    <td rowspan="2" bgcolor="FFFF00"><%= tag.progress %></td>
+ <% elsif tag.progress == "Completed" %>
+    <td rowspan="2" bgcolor="55FF55"><%= tag.progress %></td>
+ <% else %>
+    <td rowspan="2"><%= tag.progress %></td>
+ <% end %>
+
+
+</tr>
+<tr>
+  <td><%= location[1] %></td>
+  <td><%= location[2] %></td>
+  <td><%= location[3] %></td>
+</tr>
+
+<% end %>
+
+</table>
+<br>
