@@ -2,14 +2,11 @@
 
 <p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
 
-<%= "Sort by Location" %><br>
-<%= "Sort by Most Recent" %><br>
-
 <table class="table table-striped">
 
 
 <tr>
-  <th>User Info</th>
+  <th>Username</th>
   <th>Lesson Name</th>
   <th colspan="3">Unit Location</th>
   <th colspan="4">Ratings (Qual. / Help / Frust. / Time) </th>
@@ -21,7 +18,7 @@
 <% location = review.lesson.unit_location.split("-").map(&:to_i) %>
 
   <tr>
-   <td><%= link_to review.user.username, user_path(review.user.id) %></td>
+   <td rowspan="2"><%= link_to review.user.username, user_path(review.user.id) %></td>
    <td rowspan="2"><%= link_to review.lesson.name, review %></td>
    <td colspan="3"><%= "Module #{location[0]}" %></td>
    <td rowspan="2"><%= review.rating.quality %></td>
@@ -32,7 +29,7 @@
    <td rowspan="2"><%= link_to "edit this review", edit_review_path(review) if review.user.id == session[:user_id] || current_user.admin %></td>
   </tr>
   <tr>
-   <td><%= link_to review.user.full_name, user_path(review.user.id) %></td>
+
    <td><%= location[1] %></td>
    <td><%= location[2] %></td>
    <td><%= location[3] %></td>

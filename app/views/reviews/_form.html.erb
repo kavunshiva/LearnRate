@@ -43,8 +43,11 @@
   <% end %>
 
   <p><%= f.fields_for :tag do |tag| %></p>
+
+  
     <p><%= tag.label :progress %> <%= tag.select :progress, ["N/A","Need Help","Working On","Completed"],
            value: (@review.rating.present? ? @review.tag.progress : 1)  %></p>
+
   <% end %>
 
   <p><%= f.label :comment %></p>
