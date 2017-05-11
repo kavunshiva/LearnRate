@@ -1,0 +1,25 @@
+<h4>Note: now under new_age#login</h4>
+
+<h1>Login</h1>
+
+
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
+
+
+<%= form_tag :sessions do %>
+  <%= label_tag :username %>
+  <%= text_field_tag :username %>
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+  <%= submit_tag "Log In" %>
+<% end %>
+
+<%= link_to "Or sign up", new_user_path %>

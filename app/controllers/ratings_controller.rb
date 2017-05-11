@@ -1,7 +1,9 @@
 class RatingsController < ApplicationController
 
+  before_action :authorize_user
+
   def index
-    @ratings = Rating.all.sort_by { |rating| rating.unit_location }
+    @ratings = Rating.all
   end
 
   def new

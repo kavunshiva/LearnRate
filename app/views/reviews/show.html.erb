@@ -1,7 +1,9 @@
-<h1><%= link_to @review.lesson.name, "http://#{@review.lesson.url}" %></h1>
+<h1><%= link_to @review.lesson.name, "#{@review.lesson.url}" %></h1>
+<% location = @review.lesson.unit_location.split("-").map(&:to_i) %>
 <h4>Module: <%= location[0] %></h4>
-<h4>Unit: <%= location[1] %></h4>
-<h4>Lesson: <%= location[2] %></h4>
+<h4>Subject: <%= location[1] %></h4>
+<h4>Unit: <%= location[2] %></h4>
+<h4>Lesson: <%= location[3] %></h4>
 <h4>Lesson Type: <%= @review.lesson.lesson_type %></h4>
 
 <p><%= @review.lesson.description %></p>
@@ -16,6 +18,7 @@
     <th>Helpfulness</th>
     <th>Frustration</th>
     <th>Time Taken</th>
+    <th>Progress</th>
   </tr>
 
   <tr>
@@ -23,14 +26,14 @@
     <td><%= @review.rating.helpfulness %></td>
     <td><%= @review.rating.frustration %></td>
     <td><%= @review.rating.time_taken %></td>
+    <td><%= @review.tag.progress %></td>
   <tr>
 
 </table>
 <br>
-<p>Tagged as: <%= @review.tag.progress %></p>
 <br>
 <p>Comment: <%= @review.comment %></p>
 <br>
 
-<%= link_to "Edit this lesson", edit_lesson_path(@lesson) %><br>
-<%= link_to "Back to All Lessons", lessons_path %>
+<%= link_to "Edit This Review", edit_review_path(@review) %><br>
+<%= link_to "Back to All Reviews", reviews_path %>

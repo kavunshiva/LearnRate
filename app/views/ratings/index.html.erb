@@ -1,5 +1,6 @@
 <h1>All Ratings</h1>
 
+
 <table border="2">
 
 <tr>
@@ -16,6 +17,7 @@
    <td><%= location[0] %></td>
    <td><%= location[1] %></td>
    <td><%= location[2] %></td>
+   <td><%= location[3] %></td>
    <td><%= rating.rating_type %></td>
    <td><%= link_to "Link", "http://#{rating.url}" %></td>
   </tr>
@@ -24,5 +26,7 @@
 
 </table>
 <br>
+
+
 
 <%= link_to "Create a New Rating", new_rating_path %>

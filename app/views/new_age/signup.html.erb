@@ -1,0 +1,32 @@
+<%= content_for :signup do %>
+
+  <%= form_for @user do |f| %>
+    <h4>Your info:</h4>
+    <%= f.label :first_name %><br>
+    <font color="black"><%= f.text_field :first_name %><br></font>
+    <%= f.label :last_name %><br>
+    <font color="black"><%= f.text_field :last_name %><br><br></font>
+    <h4>Login info:</h4>
+    <%= f.label "Username:" %><br>
+    <font color="black"><%= f.text_field :username %><br></font>
+    <%= f.label "Enter your password:" %><br>
+    <font color="black"><%= f.password_field :password %><br></font>
+    <%= f.label "Confirm your password:" %><br>
+    <font color="black"><%= f.password_field :password_confirmation %></font>
+    <p>
+      <%= f.check_box :admin %><%= f.label "      Check if you are an admin" %>
+    </p>
+    <p>
+      <font color="navyblue"><%= f.submit %></font>
+    </p>
+  <% end %>
+  <br>
+  <a href="/login" class="btn btn-outline btn-xl">Already Registered? Log In</a>
+
+<% end %>
+
+
+
+<%= render "header" %>
+
+<%= render "footer" %>

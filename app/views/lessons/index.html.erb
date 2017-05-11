@@ -1,10 +1,13 @@
 <h1>All Lessons</h1>
 
+<p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
+
 <table border="2">
 
 <tr>
   <th>Lesson Name</th>
   <th>Module</th>
+  <th>Subject</th>
   <th>Unit</th>
   <th>Number</th>
   <th>Type</th>
@@ -19,6 +22,7 @@
    <td><%= location[0] %></td>
    <td><%= location[1] %></td>
    <td><%= location[2] %></td>
+   <td><%= location[3] %></td>
    <td><%= lesson.lesson_type %></td>
    <td><%= link_to "Link", "http://#{lesson.url}" %></td>
   </tr>

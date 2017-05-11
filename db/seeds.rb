@@ -6,16 +6,40 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'HTTParty'
+require 'nokogiri'
+require 'json'
 
 url = 'https://api.github.com/organizations/8825476/repos?page='
 
 def get_data(url)
   resp = HTTParty.get(url)
   resp.each do |repo|
-    Lesson.create(name: repo["name"])
+    page_url = "https://github.com/#{repo['full_name']}"
+    page = Nokogiri::HTML(open(page_url))
+    if page.present?
+      description = page.css('div#readme')
+        .css('article').css('p')
+        .first
+      if description.present?
+        description_text = description.text
+      end
+      learn_url_element = page.css('a').find {|element| element.to_html.include?("learn.co")}
+      if learn_url_element.present?
+        learn_url = learn_url_element['href'].split('//').last
+      end
+    end
+    if repo["name"].present? &&
+      description_text.present? &&
+      learn_url.present?
+        lesson = Lesson.create(
+          name: repo["name"],
+          description: description_text,
+          url: learn_url
+        )
+    end
   end
 end
 
-for i in 1..50
+for i in 1..10
   get_data(url+i.to_s)
 end

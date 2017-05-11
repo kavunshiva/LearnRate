@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
 
+  before_action :authorize_user, except: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create]
+
+
+  layout "new_age", :only => :new
+
+
   def index
     @users = User.all.sort_by { |user| user.username }
   end
@@ -11,6 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user
     else
       render :new
@@ -22,7 +30,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
+    if session[:user_id].to_s == params[:id] || current_user.admin
+      @user = User.find_by(id: params[:id])
+    else
+      flash[:notice] = "You must be either be this user or the admin to edit this user."
+      redirect_to users_path
+    end
   end
 
   def update
@@ -34,15 +47,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if session[:user_id].to_s == params[:id] || current_user.admin
+      User.find_by(id: params[:id]).destroy
+    else
+      flash[:notice] = "You must be either be this user or the admin to edit this user."
+    end
+    redirect_to users_path
+  end
+
   private
 
   def user_params
     params.require(:user).permit(
       :username,
-      :password_digest,
+      :password,
+      :password_confirmation,
+      :admin,
       :first_name,
       :last_name
       )
   end
+
 
 end

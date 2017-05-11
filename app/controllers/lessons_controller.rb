@@ -1,7 +1,10 @@
 class LessonsController < ApplicationController
+  before_action :authorize_user
+  before_action :authorize_admin, except: [:index, :show]
 
   def index
-    @lessons = Lesson.all.sort_by { |lesson| lesson.unit_location }
+    @lessons = Lesson.all
+    # .sort_by { |lesson| lesson.unit_location }
   end
 
   def new

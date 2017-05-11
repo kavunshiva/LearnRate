@@ -14,7 +14,7 @@
   <p><%= f.text_area :description %></p>
   <p><%= f.label :url %></p>
   <p><%= f.text_field :url %></p>
-  <p><%= f.label "Module, Unit, Lesson Number (##-##-###)" %></p>
+  <p><%= f.label "Module, Unit, Lesson Number (##-##-##-##)" %></p>
   <p><%= f.text_field :unit_location %></p>
   <p><%= f.label "Lesson Type:" %> <% f.select :lesson_type, ["Reading", "Lab"] %></p>
   <p><%= f.label :lesson_type_reading, "Reading" %> <%= f.radio_button :lesson_type, "Reading", :checked => true %>

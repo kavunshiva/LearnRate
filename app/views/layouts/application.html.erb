@@ -1,41 +1,57 @@
-<!DOCTYPE html>
-<html>
- <head>
-   <title>LearnRate</title>
-   <%= stylesheet_link_tag    "application", media: "all" %>
-   <%= javascript_include_tag "application" %>
-   <%= csrf_meta_tags %>
-   <%= analytics_init if Rails.env.production? %>
-   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
- </head>
- <body>
-   <!--  navbar -->
+<head>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
 
-   <nav class="navbar navbar-inverse">
-     <div class="container-fluid">
-       <div class="navbar-header">
-         <a class="navbar-brand" href="#">Learn Rate</a>
-       </div>
-       <ul class="nav navbar-nav">
-         <li class="active"><a href="#">Home</a></li>
-         <li><%= link_to "Users", users_path %></li>
-         <li><%= link_to "Reviews", reviews_path %></li>
-         <li class="dropdown">
-           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons
-           <span class="caret"></span></a>
-           <ul class="dropdown-menu">
-             <li><a href="#">Page 1-1</a></li>
-             <li><a href="#">Page 1-2</a></li>
-             <li><a href="#">Page 1-3</a></li>
-           </ul>
-         </li>
-         <li><%= link_to "Ratings", ratings_path %></li>
-         <li><%= link_to "Tags", tags_path %></li>
-       </ul>
-     </div>
-   </nav>
-    <div class="container"  role="main">
-      <%= yield %>
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/welcome">LearnRate</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+
+          <li><%= link_to "Reviews", reviews_path %></li>
+          <li><%= link_to "Lessons", lessons_path %></li>
+          <li><%= link_to "Users", users_path %></li>
+
+        </ul>
+
+        <% if logged_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li style="float:right"><% string = "<span class='glyphicon glyphicon-log-out'></span>" %>
+            <%= link_to logout_path, method: :delete  do %>
+            <span class='glyphicon glyphicon-log-out'></span>
+            Logout
+            <% end %></li>
+
+          <li><%= link_to "#{current_user.username}#{" (admin)" if current_user.admin}", "/welcome" %></li>
+          <% end %>
+
+
+        </ul>
+      </div>
     </div>
-  </body>
+  </nav>
+
+  <div class="container" role="main">
+  <style>
+    body {background-image: url("/assets/new_age/colorbg.jpg");}
+
+  </style>
+    <div class = "jumbotron">
+    <%= yield %>
+  </div>
+</div>
+
+</body>
 </html>

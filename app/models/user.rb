@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  has_secure_password
+
   has_many :reviews
   has_many :lessons, through: :reviews
   has_many :ratings, through: :reviews
@@ -12,9 +14,5 @@ class User < ApplicationRecord
   validates :username, presence: { scope: true, message: "must be entered" }
   validates :first_name, presence: { scope: true, message: "must be entered" }
   validates :last_name, presence: { scope: true, message: "must be entered" }
-
-  # if has_secure_password
-  #   validates_confirmation_of :password
-  # end
 
 end
