@@ -10,27 +10,20 @@ class Lesson < ApplicationRecord
   validates :url, presence: { scope: true, message: "must be entered" }
   validates_format_of :unit_location, :with => /\d{2}-\d{2}-\d{2}-\d{2}/, message: "must be formatted as ##-##-##-##"
 
-  def average_rating
-    # time taken
-    # helpfulness
-    # frustration
-    # quality
-  end
-
   def average_time_taken
-    Rating.where(review: self.reviews).average(:time_taken).to_f
+    Rating.where(review: self.reviews).average(:time_taken).to_f.round(1)
   end
 
   def average_helpfulness
-    Rating.where(review: self.reviews).average(:helpfulness).to_f
+    Rating.where(review: self.reviews).average(:helpfulness).to_f.round(1)
   end
 
   def average_frustration
-    Rating.where(review: self.reviews).average(:frustration).to_f
+    Rating.where(review: self.reviews).average(:frustration).to_f.round(1)
   end
 
   def average_quality
-    Rating.where(review: self.reviews).average(:quality).to_f
+    Rating.where(review: self.reviews).average(:quality).to_f.round(1)
   end
 
 end
