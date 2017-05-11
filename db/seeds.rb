@@ -17,6 +17,7 @@ def create_lessons(url)
           name: repo["name"],
           description: description,
           url: learn_url,
+          # kludge because numbers are arbitrary and scraping's a rabbit hole
           unit_location: "#{rand(100)}-#{rand(100)}-#{rand(100)}-#{rand(100)}"
         )
     end
