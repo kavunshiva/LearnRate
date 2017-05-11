@@ -25,7 +25,17 @@
    <td rowspan="2"><%= review.rating.helpfulness %></td>
    <td rowspan="2"><%= review.rating.frustration %></td>
    <td rowspan="2"><%= review.rating.time_taken %></td>
-   <td rowspan="2"></td>
+   
+   <% if review.tag.progress == "Need Help" %>
+      <td rowspan="2" bgcolor="FF5555"><%= review.tag.progress %></td>
+   <% elsif review.tag.progress == "Working On" %>
+      <td rowspan="2" bgcolor="FFFF00"><%= review.tag.progress %></td>
+   <% elsif review.tag.progress == "Completed" %>
+      <td rowspan="2" bgcolor="55FF55"><%= review.tag.progress %></td>
+   <% else %>
+      <td rowspan="2"><%= review.tag.progress %></td>
+   <% end %>
+
    <td rowspan="2"><%= link_to "edit this review", edit_review_path(review) if review.user.id == session[:user_id] || current_user.admin %></td>
   </tr>
   <tr>
@@ -33,7 +43,7 @@
    <td><%= location[1] %></td>
    <td><%= location[2] %></td>
    <td><%= location[3] %></td>
-   <td></td>
+
 
   </tr>
 
