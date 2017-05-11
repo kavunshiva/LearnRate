@@ -15,8 +15,12 @@
   <p><%= f.fields_for :rating do |rating| %></p>
 
     <h3>Please rate the following from 1 to 10:</h3>
-    <p><%= rating.label :quality %>
-    <%= rating.range_field :quality, min: 1, max: 10, value: (@review.rating.present? ? @review.rating.quality : 1) %></p>
+
+    <p><%= rating.label :quality, name: "myform",
+        oninput: "range2value.value = range2.valueAsNumber" %>
+    <%= rating.range_field :quality, min: 1, max: 10,
+        value: (@review.rating.present? ? @review.rating.quality : 1), name: "range2" %></p>
+
     <p><%= rating.label :helpfulness %>
     <%= rating.range_field :helpfulness, min: 1, max: 10, value: (@review.rating.present? ? @review.rating.helpfulness : 1) %></p>
     <p><%= rating.label :frustration %>
