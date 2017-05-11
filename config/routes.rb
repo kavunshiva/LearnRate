@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # post '/sessions', to: "sessions#create", as: "sessions"
   delete '/logout', to: "sessions#destroy", as: "logout"
   get '/signup', to: "users#new"
+  get '/search', to: "lessons#search", as: "search"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
