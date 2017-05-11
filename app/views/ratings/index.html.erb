@@ -1,32 +1,16 @@
-<h1>All Ratings</h1>
+<h1>All Tags</h1>
 
 
 <table border="2">
 
 <tr>
-  <th>Quality</th>
-  <th>Helpfulness</th>
-  <th>Frustration</th>
-  <th>Time Taken</th>
+  <th>Username</th>
+  <th>Lab Name</th>
+  <th>Location</th>
+  <th>Progress</th>
 </tr>
 
-<% @ratings.each do |rating| %>
 
-  <tr>
-   <td><%= link_to rating.name, rating %></td>
-   <td><%= location[0] %></td>
-   <td><%= location[1] %></td>
-   <td><%= location[2] %></td>
-   <td><%= location[3] %></td>
-   <td><%= rating.rating_type %></td>
-   <td><%= link_to "Link", "http://#{rating.url}" %></td>
-  </tr>
-
-<% end %>
 
 </table>
 <br>
-
-
-
-<%= link_to "Create a New Rating", new_rating_path %>
