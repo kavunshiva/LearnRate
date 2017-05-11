@@ -19,10 +19,10 @@
     <%= f.label "Confirm your password:" %><br>
     <font color="black"><%= f.password_field :password_confirmation %></font>
     <p>
-      <%= f.check_box :admin %><%= f.label "      Check if you are an admin" %>
+      <%= f.check_box :admin %> <%= f.label "Admin?" %>
     </p>
     <p>
-      <font color="navyblue"><%= f.submit %></font>
+      <%= f.submit "Sign up", :class =>'btn btn-outline' %>
     </p>
   <% end %>
   <br>
