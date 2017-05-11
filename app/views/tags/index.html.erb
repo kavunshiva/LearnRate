@@ -1,45 +1,74 @@
-<h1>All Tags</h1>
+<h1>Help Other Users</h1>
+<p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
 
+<table class="table table-striped">
 
-<table border="2">
+  <tr>
+    <% help_count =  Tag.all.count { |tag| tag.progress == "Need Help" } %>
+    <% if help_count == 1 %>
+      <th colspan="5" bgcolor="FFAAAA">There is currently 1 request for help</th>
+    <% else %>
+      <th colspan="5" bgcolor="FFAAAA">There are currently <%= help_count %> requests for help</th>
+    <% end %>
+  </tr>
+  <tr>
+    <th>Username</th>
+    <th>Lesson Name</th>
+    <th colspan="3">Location</th>
+  </tr>
 
-<tr>
-  <th>Username</th>
-  <th>Lab Name</th>
-  <th colspan="3">Location</th>
-  <th>Progress</th>
-</tr>
+  <% @tags.each do |tag| %>
+  <% location = tag.review.lesson.unit_location.split("-") %>
 
-<% @tags.each do |tag| %>
+    <% if tag.progress == "Need Help" %>
 
-<% location = tag.review.lesson.unit_location.split("-") %>
+      <tr>
+       <td rowspan="2"><%= link_to tag.review.user.username, user_path(tag.review.user) %></td>
+       <td rowspan="2"><%= link_to tag.review.lesson.name, lesson_path(tag.review.lesson) %></td>
+       <td colspan="3">Module <%= location[0] %></td>
+      </tr>
+      <tr>
+        <td><%= location[1] %></td>
+        <td><%= location[2] %></td>
+        <td><%= location[3] %></td>
+      </tr>
 
-<tr>
- <td rowspan="2"><%= link_to tag.review.user.username, user_path(tag.review.user) %></td>
-
- <td rowspan="2"><%= link_to tag.review.lesson.name, lesson_path(tag.review.lesson) %></td>
-
- <td colspan="3">Module <%= location[0] %></td>
-
- <% if tag.progress == "Need Help" %>
-    <td rowspan="2" bgcolor="FF5555"><%= tag.progress %></td>
- <% elsif tag.progress == "Working On" %>
-    <td rowspan="2" bgcolor="FFFF00"><%= tag.progress %></td>
- <% elsif tag.progress == "Completed" %>
-    <td rowspan="2" bgcolor="55FF55"><%= tag.progress %></td>
- <% else %>
-    <td rowspan="2"><%= tag.progress %></td>
- <% end %>
-
-
-</tr>
-<tr>
-  <td><%= location[1] %></td>
-  <td><%= location[2] %></td>
-  <td><%= location[3] %></td>
-</tr>
-
-<% end %>
-
+    <% end %>
+  <% end %>
 </table>
-<br>
+
+<table class="table table-striped">
+
+  <tr>
+    <% working_count =  Tag.all.count { |tag| tag.progress == "Working On" } %>
+    <% if working_count == 1 %>
+      <th colspan="5" bgcolor="FFFF00">There is currently 1 lesson being worked on</th>
+    <% else %>
+      <th colspan="5" bgcolor="FFFF00">There are currently <%= working_count %> lessons being worked on</th>
+    <% end %>
+  </tr>
+  <tr>
+    <th>Username</th>
+    <th>Lesson Name</th>
+    <th colspan="3">Location</th>
+  </tr>
+
+  <% @tags.each do |tag| %>
+  <% location = tag.review.lesson.unit_location.split("-") %>
+
+    <% if tag.progress == "Working On" %>
+
+      <tr>
+       <td rowspan="2"><%= link_to tag.review.user.username, user_path(tag.review.user) %></td>
+       <td rowspan="2"><%= link_to tag.review.lesson.name, lesson_path(tag.review.lesson) %></td>
+       <td colspan="3">Module <%= location[0] %></td>
+      </tr>
+      <tr>
+        <td><%= location[1] %></td>
+        <td><%= location[2] %></td>
+        <td><%= location[3] %></td>
+      </tr>
+
+    <% end %>
+  <% end %>
+</table>

@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
     @review.tag.update(progress: params[:review][:tag][:progress])
     if @review.save
       @review.rating.save
-      redirect_to @review, notice: "Your review was updated"
+      redirect_to @review
     else
       render :edit
     end

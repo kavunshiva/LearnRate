@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :tags
+
   resources :ratings
   resources :lessons
   resources :reviews
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'new_age/index', to:"new_age#index"
 
   resources :welcome, only: :index
+
+  get '/help', to: "tags#index", as: "help"
 
   get '/login', to: "new_age#login", as: "login"
   get '/signup', to: "new_age#signup", as: "signup"
