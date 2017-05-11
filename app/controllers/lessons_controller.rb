@@ -39,7 +39,7 @@ class LessonsController < ApplicationController
 
   def search
     @lessons = Lesson.where("name LIKE ?", "%#{params[:search_term]}%")
-    if !!@lessons
+    if @lessons.present?
       render :index
     else
       flash[:notice] = "Can't find that lesson. Perhaps you'll find what you're looking for here?"
