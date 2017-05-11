@@ -1,15 +1,21 @@
 <style>
-    body {background-image: url("/assets/new_age/colorbg.jpg");}
-
+  body {
+    background-image: url("/assets/new_age/colorbg.jpg");
+  }
 </style>
 
-
-
-
-
-
 <div class="jumbotron">
-  <h1>User Stats DashBoard</h1>
-  <p>Going to add some sort of information here, hardest lesson etc etc </p>
-  <p><a class="btn btn-primary btn-lg">Placeholder button!</a></p>
+  <h1>Hey there <%= @current_user.first_name %>!</h1>
+  <h3>I know what you're thinking....so how are labs rated?</h3>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <strong><h4>How to get started:<h4></strong>
+
+
+  </div>
+
+  <p>
+    <a class="btn btn-primary btn-lg">Placeholder button!</a>
+  </p>
 </div>

@@ -1,16 +1,76 @@
-<h1><%= link_to @lesson.name, "http://#{@lesson.url}" %></h1>
-<p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
-<h4>Module: <%= location[0] %></h4>
-<h4>Unit: <%= location[1] %></h4>
-<h4>Lesson: <%= location[2] %></h4>
-<h4>Lesson: <%= location[3] %></h4>
-<h4>Lesson Type: <%= @lesson.lesson_type %></h4>
-<h4>Average time to complete: <%= @lesson.average_time_taken %></h4>
-<h4>Average helpfulness: <%= @lesson.average_helpfulness %></h4>
-<h4>Average frustration: <%= @lesson.average_frustration %></h4>
-<h4>Average quality: <%= @lesson.average_quality %></h4>
 
-<p><%= @lesson.description %></p>
 
-<%= link_to "Edit this lesson", edit_lesson_path(@lesson) if current_user.admin %><br>
-<%= link_to "Back to All Lessons", lessons_path %>
+
+
+
+
+
+<div class="container">
+  <h1><%= link_to @lesson.name, "http://#{@lesson.url}" %></h1>
+  <p><%= @lesson.description %></p>
+  <p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Quality</h3>
+        </div>
+        <div class="panel-body">
+          <h4>Average quality: <%= @lesson.average_quality %></h4>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-6">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title">Frustration</h3>
+        </div>
+        <div class="panel-body">
+          <h4>Average frustration: <%= @lesson.average_frustration %></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Helpfulness</h3>
+        </div>
+        <div class="panel-body">
+          <h4>Average helpfulness: <%= @lesson.average_helpfulness %></h4>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Time Taken</h3>
+        </div>
+        <div class="panel-body">
+          <h4>Average time to complete: <%= @lesson.average_time_taken %></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <h4>Module: <%= location[0] %></h4>
+  <h4>Unit: <%= location[1] %></h4>
+  <h4>Lesson: <%= location[2] %></h4>
+  <h4>Lesson: <%= location[3] %></h4>
+  <h4>Lesson Type: <%= @lesson.lesson_type %></h4>
+
+
+  <br></br>
+  <%= link_to "Edit this lesson", edit_lesson_path(@lesson) if current_user.admin %><br>
+  <%= link_to "Back to All Lessons", lessons_path %>
+
+
+</div>
