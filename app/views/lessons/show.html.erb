@@ -2,14 +2,14 @@
 <div class="container">
   <h1><%= link_to @lesson.name, "http://#{@lesson.url}" %></h1>
   <p><%= @lesson.description %></p>
-  <h2>Here's how people rated this lesson:</h2>
+  <h2>Here's how people rated this lab:</h2>
   <p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
   <div class="row">
 
     <div class="col-sm-6">
       <div class="panel panel-warning">
         <div class="panel-heading">
-          <h3 class="panel-title">Frustration</h3>
+          <h3 class="panel-title">Frustration <span class='glyphicon glyphicon-fire'></span></h3>
         </div>
         <div class="panel-body">
           <h2><%= @lesson.average_frustration %> / 10</h2>
@@ -21,7 +21,7 @@
     <div class="col-sm-6">
       <div class="panel panel-success">
         <div class="panel-heading">
-          <h3 class="panel-title">Quality</h3>
+          <h3 class="panel-title">Quality <span class='glyphicon glyphicon-star'></span></h3>
         </div>
         <div class="panel-body">
           <h2><%= @lesson.average_quality %> / 10</h2>
@@ -35,7 +35,7 @@
     <div class="col-sm-6">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title">Helpfulness</h3>
+          <h3 class="panel-title">Helpfulness <span class='glyphicon glyphicon-ok'></span></h3>
         </div>
         <div class="panel-body">
           <h2><%= @lesson.average_helpfulness %> / 10</h2>
@@ -47,7 +47,7 @@
     <div class="col-sm-6">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Time Taken</h3>
+          <h3 class="panel-title">Time Taken <span class='glyphicon glyphicon-time'></span></h3>
         </div>
         <div class="panel-body">
           <h2><%= @lesson.average_time_taken %></h2>
@@ -64,7 +64,8 @@
   <h4>Lesson Type: <%= @lesson.lesson_type %></h4>
 
 
-  <br></br>
+
+  <h3><%= link_to "Review this lesson", :class =>'btn btn-outline', controller: "reviews", action: "new", lesson_id: @lesson.id %><br></h3>
   <%= link_to "Edit this lesson", edit_lesson_path(@lesson) if current_user.admin %><br>
   <%= link_to "Back to All Lessons", lessons_path %>
 

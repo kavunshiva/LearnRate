@@ -7,10 +7,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = Review.new
+    @review = Review.new(lesson_id: params[:lesson_id])
   end
 
   def create
+    byebug
     @review = Review.new(review_params(:comment))
     @review.user = current_user
     @review.lesson = Lesson.find_by(id: params[:review][:lesson_id])

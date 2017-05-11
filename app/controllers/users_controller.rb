@@ -11,7 +11,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if !session[:user_id] || current_user.admin
+      @user = User.new
+    else
+      redirect_to welcome_index_path
+    end
   end
 
   def create

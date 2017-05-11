@@ -38,9 +38,9 @@ class LessonsController < ApplicationController
   end
 
   def search
-    @lesson = Lesson.find_by("name LIKE ?", "%#{params[:search_term]}%")
-    if !!@lesson
-      redirect_to lesson_path(@lesson)
+    @lessons = Lesson.where("name LIKE ?", "%#{params[:search_term]}%")
+    if @lessons.present?
+      render :index
     else
       flash[:notice] = "Can't find that lesson. Perhaps you'll find what you're looking for here?"
       redirect_to lessons_path

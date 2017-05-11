@@ -4,11 +4,25 @@ class NewAgeController < ApplicationController
   skip_before_action :require_login, only: [:index, :login, :signup]
 
   def index
-
+    create_new_user_or_redirect_if_signed_in
   end
 
   def signup
-    @user = User.new
+    create_new_user_or_redirect_if_signed_in
+  end
+
+  def login
+    create_new_user_or_redirect_if_signed_in
+  end
+
+  private
+
+  def create_new_user_or_redirect_if_signed_in
+    if !session[:user_id]
+      @user = User.new
+    else
+      redirect_to welcome_index_path
+    end
   end
 
 end

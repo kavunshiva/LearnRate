@@ -42,7 +42,6 @@
       <td rowspan="2"><%= review.tag.progress %></td>
    <% end %>
 
-
    <td rowspan="2"><%= link_to "edit this review", edit_review_path(review) if review.user.id == session[:user_id] || current_user.admin %></td>
   </tr>
   <tr>
