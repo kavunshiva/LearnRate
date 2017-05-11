@@ -37,6 +37,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
 gem 'frontend-generators'
 gem 'jquery-rails'
+gem 'mechanize'
 
 
 group :development, :test do
