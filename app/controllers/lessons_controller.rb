@@ -38,11 +38,26 @@ class LessonsController < ApplicationController
   end
 
   def search
-    @lessons = Lesson.where("name LIKE ?", "%#{params[:search_term]}%")
+    # @lessons = Lesson.where(
+    #   "name REGEXP ?",
+    #   params[:search_term].split.collect {|word| "(#{word})"}.join
+    # )
+
+    # kludge - SQLite3 doesn't have REGEXP
+    all_matching_lessons = []
+    params[:search_term].split.each do |term|
+      lessons = Lesson.where("name LIKE ?", "%#{term}%").collect do |lesson|
+        lesson
+      end
+      all_matching_lessons << lessons
+    end
+    @lessons = all_matching_lessons.flatten.uniq
+
     if @lessons.present?
       render :index
     else
-      flash[:notice] = "Can't find that lesson. Perhaps you'll find what you're looking for here?"
+      flash[:notice] = "Can't find that lesson. \
+        Perhaps you'll find what you're looking for here?"
       redirect_to lessons_path
     end
   end
