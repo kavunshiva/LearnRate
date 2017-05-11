@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :authorize_user
-  before_action :authorize_admin, except: [:index, :show]
+  before_action :authorize_admin, except: [:index, :show, :search]
 
   def index
     @lessons = Lesson.all
@@ -34,6 +34,16 @@ class LessonsController < ApplicationController
       redirect_to @lesson
     else
       render :edit
+    end
+  end
+
+  def search
+    @lesson = Lesson.find_by("name LIKE ?", "%#{params[:search_term]}%")
+    if !!@lesson
+      redirect_to lesson_path(@lesson)
+    else
+      flash[:notice] = "Can't find that lesson. Perhaps you'll find what you're looking for here?"
+      redirect_to lessons_path
     end
   end
 
