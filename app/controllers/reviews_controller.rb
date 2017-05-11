@@ -14,7 +14,8 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params(:comment))
     @review.user = current_user
     @review.lesson = Lesson.find_by(id: params[:review][:lesson_id])
-    @rating = Rating.new(rating_params(:quality, :helpfulness, :frustration, :time_taken))
+    @rating = Rating.new(rating_params(:quality, :helpfulness, :frustration, :time_taken, :time_taken_minutes, :time_taken_hours))
+    @rating.time_taken = @rating.hours_minutes_to_minutes
     @tag = Tag.new(progress: params[:review][:tag][:progress])
     @review.rating = @rating
     @review.tag = @tag
@@ -39,17 +40,47 @@ class ReviewsController < ApplicationController
     end
   end
 
+  # def update
+  #
+  #   @review = Review.find_by(id: params[:id])
+  #
+  #   @review.comment = params[:review][:comment]
+  #   @review.user = current_user
+  #   @review.lesson = Lesson.find_by(id: params[:review][:lesson_id])
+  #
+  #   @rating = Rating.find_by(id: params[:id])
+  #   byebug
+  #
+  #   @rating.update(rating_params(:quality, :helpfulness, :frustration, :time_taken, :time_taken_minutes, :time_taken_hours))
+  #   @review.rating.time_taken = @review.rating.hours_minutes_to_minutes
+  #   @review.rating = @rating
+  #
+  #   @tag = Tag.find_by(id: params[:id])
+  #   @review.tag.update(progress: params[:review][:tag][:progress])
+  #   @review.tag = @tag
+  #
+  #   if @review.save
+  #     redirect_to @review
+  #   else
+  #     render :update
+  #   end
+  # end
+
   def update
+    byebug
     @review = Review.find_by(id: params[:id])
     @review.comment = params[:review][:comment]
     @review.user = current_user
     @review.lesson = Lesson.find_by(id: params[:review][:lesson_id])
-    @review.rating.update(rating_params(:quality, :helpfulness, :frustration, :time_taken))
+    @review.rating.update(rating_params(:quality, :helpfulness, :frustration, :time_taken_minutes, :time_taken_hours))
+    @review.rating.time_taken = @review.rating.hours_minutes_to_minutes
+
     @review.tag.update(progress: params[:review][:tag][:progress])
     if @review.save
+      @review.rating.save
       redirect_to @review
     else
-      render :new
+      render :edit
     end
   end
 

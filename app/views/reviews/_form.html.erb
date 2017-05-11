@@ -8,19 +8,26 @@
 
 <%= form_for @review do |f| %>
 
-  <%= "Review by #{current_user.username}" %>
+  <p><%= "Review by #{current_user.username}" %></p>
 
   <p><%= f.collection_select :lesson_id, Lesson.all, :id, :name %></p>
 
   <p><%= f.fields_for :rating do |rating| %></p>
-    <p><%= rating.label :quality %> <%= rating.select :quality, [1,2,3,4,5,6,7,8,9,10] %></p>
-    <p><%= rating.label :helpfulness %> <%= rating.select :helpfulness, [1,2,3,4,5,6,7,8,9,10] %></p>
-    <p><%= rating.label :frustration %> <%= rating.select :frustration, [1,2,3,4,5,6,7,8,9,10] %></p>
-    <p><%= rating.label :time_taken %> <%= rating.select :time_taken, [1,2,3,4,5,6,7,8,9,10] %></p>
+
+    <h3>Please rate the following from 1 to 10:</h3>
+    <p><%= rating.label :quality %>
+    <%= rating.range_field :quality, min: 1, max: 10, value: (@review.rating.present? ? @review.rating.quality : 1) %></p>
+    <p><%= rating.label :helpfulness %>
+    <%= rating.range_field :helpfulness, min: 1, max: 10, value: (@review.rating.present? ? @review.rating.helpfulness : 1) %></p>
+    <p><%= rating.label :frustration %>
+    <%= rating.range_field :frustration, min: 1, max: 10, value: (@review.rating.present? ? @review.rating.frustration : 1) %></p>
+    <p><%= rating.label "Completion Time" %></p>
+    <p>Hours: <%= rating.number_field :time_taken_hours, value: (@review.rating.present? ? @review.rating.to_only_hours : 1) %>
+       Minutes: <%= rating.number_field :time_taken_minutes, value: (@review.rating.present? ? @review.rating.to_only_minutes : 1) %></p>
   <% end %>
 
   <p><%= f.fields_for :tag do |tag| %></p>
-    <p><%= tag.label :progress %> <%= tag.select :progress, ["Need Help","Working On","Completed"] %></p>
+    <p><%= tag.label :progress %> <%= tag.select :progress, ["N/A","Need Help","Working On","Completed"], value: @review.tag.progress %></p>
   <% end %>
 
   <p><%= f.label :comment %></p>
