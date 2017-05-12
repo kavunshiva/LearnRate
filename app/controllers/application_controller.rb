@@ -2,10 +2,13 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_action :require_login
-  helper_method :location, :current_user, :authorize_user, :authorize_admin, :logged_in?
+  helper_method :location, :current_user, :authorize_user, :authorize_admin, :logged_in?, :to_hours_minutes
 
   private
 
+  def to_hours_minutes(time)
+    "#{time/60}H #{time%60}M"
+  end
 
   def require_login
     # return head(:forbidden) unless session.include? :user_id
