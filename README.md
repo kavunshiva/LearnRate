@@ -7,6 +7,7 @@ This was made as a proof of concept, the eventual idea would be to integrate som
 
 ## Demo Site
 Click [here](https://murmuring-spire-56141.herokuapp.com/) to see the demo.
+
 ![LearnRateImage](http://oi64.tinypic.com/29vi0cm.jpg)
 
 ### Installing Locally
