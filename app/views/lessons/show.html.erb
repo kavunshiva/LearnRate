@@ -1,6 +1,27 @@
 
 <div class="container">
   <h1><%= link_to @lesson.name, "http://#{@lesson.url}" %></h1>
+
+  <table class="table table-striped">
+
+    <tr>
+      <th>Module</th>
+      <th>Subject</th>
+      <th>Unit</th>
+      <th>Lesson</th>
+      <th>Lesson Type</th>
+    </tr>
+   <tr>
+     <th><%= location[0] %></th>
+     <th><%= location[1] %></th>
+     <th><%= location[2] %></th>
+     <th><%= location[3] %></th>
+     <th><%= @lesson.lesson_type %></th>
+   </tr>
+
+
+ </table>
+
   <p><%= @lesson.description %></p>
   <h2>Here's how people rated this lab:</h2>
   <p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
@@ -57,11 +78,6 @@
   </div>
 
 
-  <h4>Module: <%= location[0] %></h4>
-  <h4>Unit: <%= location[1] %></h4>
-  <h4>Lesson: <%= location[2] %></h4>
-  <h4>Lesson: <%= location[3] %></h4>
-  <h4>Lesson Type: <%= @lesson.lesson_type %></h4>
 
 
 

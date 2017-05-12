@@ -5,13 +5,12 @@
 </style>
 
 <div class="jumbotron">
-  <h1>Hey there, <%= @current_user.first_name %>!</h1>
-
-
-  <h2>Here's Your Progress:</h2>
 
   <table class="table table-striped">
 
+  <tr>
+    <th colspan="3"><%= link_to "Hey there #{@current_user.first_name}! Here's Your Progress:", user_path(@current_user) %></th>
+  </tr>
   <tr>
     <th bgcolor="FFAAAA">Lessons Needing Help</th>
     <th bgcolor="FFFF00">Lessons Working On</th>
@@ -25,8 +24,6 @@
   </tr>
 
   </table>
-
-  <h2><%= link_to "Visit Your Page", user_path(@current_user) %></h2>
 
   <p><strong><font color="#ff0000"><%= flash[:notice] %></font></strong></p>
 

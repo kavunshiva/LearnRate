@@ -44,14 +44,7 @@ class LessonsController < ApplicationController
     # )
 
     # kludge - SQLite3 doesn't have REGEXP
-    all_matching_lessons = []
-    params[:search_term].split.each do |term|
-      lessons = Lesson.where("name LIKE ?", "%#{term}%").collect do |lesson|
-        lesson
-      end
-      all_matching_lessons << lessons
-    end
-    @lessons = all_matching_lessons.flatten.uniq
+    @lessons = find_matching_lessons(params)
 
     if @lessons.present?
       render :index
@@ -72,6 +65,17 @@ class LessonsController < ApplicationController
       :lesson_type,
       :url
       )
+  end
+
+  def find_matching_lessons(params)
+    all_matching_lessons = []
+    params[:search_term].split.each do |term|
+      lessons = Lesson.where("name LIKE ?", "%#{term}%").collect do |lesson|
+        lesson
+      end
+      all_matching_lessons << lessons
+    end
+    all_matching_lessons.flatten.uniq
   end
 
 end

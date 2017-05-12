@@ -6,15 +6,22 @@
   <tr>
     <% help_count =  Tag.all.count { |tag| tag.progress == "Need Help" } %>
     <% if help_count == 1 %>
-      <th colspan="5" bgcolor="FFAAAA">There is currently 1 request for help</th>
+      <th colspan="6" bgcolor="FFAAAA">There is currently 1 request for help</th>
     <% else %>
-      <th colspan="5" bgcolor="FFAAAA">There are currently <%= help_count %> requests for help</th>
+      <th colspan="6" bgcolor="FFAAAA">There are currently <%= help_count %> requests for help</th>
     <% end %>
   </tr>
   <tr>
     <th>Username</th>
     <th>Lesson Name</th>
     <th colspan="3">Location</th>
+    <th>Claimed By</th>
+  </tr>
+  <tr>
+    <th><span class="glyphicon glyphicon-user"></span></th>
+    <th><span class="glyphicon glyphicon-list-alt"></span></th>
+    <th colspan="3"><span class="glyphicon glyphicon-map-marker"></span></th>
+    <th><span class="glyphicon glyphicon-education"></span></th>
   </tr>
 
   <% @tags.each do |tag| %>
@@ -26,11 +33,11 @@
        <td rowspan="2"><%= link_to tag.review.user.username, user_path(tag.review.user) %></td>
        <td rowspan="2"><%= link_to tag.review.lesson.name, lesson_path(tag.review.lesson) %></td>
        <td colspan="3">Module <%= location[0] %></td>
+       <td bgcolor="FF7777">No one yet</td>
       </tr>
       <tr>
-        <td><%= location[1] %></td>
-        <td><%= location[2] %></td>
-        <td><%= location[3] %></td>
+        <td colspan="3"><%= ["Ruby", "Rails", "Sinatra", "CSS", "JS", "HTML", "Rack", "Redux", "React", "CRUD"].sample %></td>
+        <td bgcolor="FF9999">Help them out!</td>
       </tr>
 
     <% end %>
@@ -42,15 +49,22 @@
   <tr>
     <% working_count =  Tag.all.count { |tag| tag.progress == "Working On" } %>
     <% if working_count == 1 %>
-      <th colspan="5" bgcolor="FFFF00">There is currently 1 lesson being worked on</th>
+      <th colspan="6" bgcolor="FFFF00">There is currently 1 lesson being worked on</th>
     <% else %>
-      <th colspan="5" bgcolor="FFFF00">There are currently <%= working_count %> lessons being worked on</th>
+      <th colspan="6" bgcolor="FFFF00">There are currently <%= working_count %> lessons being worked on</th>
     <% end %>
   </tr>
   <tr>
     <th>Username</th>
     <th>Lesson Name</th>
     <th colspan="3">Location</th>
+    <th>Paired With</th>
+  </tr>
+  <tr>
+    <th><span class="glyphicon glyphicon-user"></span></th>
+    <th><span class="glyphicon glyphicon-list-alt"></span></th>
+    <th colspan="3"><span class="glyphicon glyphicon-map-marker"></span></th>
+    <th><span class="glyphicon glyphicon-resize-small"></span></th>
   </tr>
 
   <% @tags.each do |tag| %>
@@ -62,11 +76,11 @@
        <td rowspan="2"><%= link_to tag.review.user.username, user_path(tag.review.user) %></td>
        <td rowspan="2"><%= link_to tag.review.lesson.name, lesson_path(tag.review.lesson) %></td>
        <td colspan="3">Module <%= location[0] %></td>
+       <td bgcolor="FFFF22">No one yet</td>
       </tr>
       <tr>
-        <td><%= location[1] %></td>
-        <td><%= location[2] %></td>
-        <td><%= location[3] %></td>
+        <td colspan="3"><%= ["Ruby", "Rails", "Sinatra", "CSS", "JS", "HTML", "Rack", "Redux", "React", "CRUD"].sample %></td>
+        <td bgcolor="FFFF44">Pair with them!</td>
       </tr>
 
     <% end %>
