@@ -31,17 +31,21 @@
   <% else %>
 
     <tr>
-      <th rowspan="2">Lesson Name</th>
-      <th rowspan="2" colspan="3">Unit Location</th>
+      <th>Lesson Name</th>
+      <th colspan="3">Unit Location</th>
       <th colspan="4">Ratings</th>
-      <th rowspan="2">User's Progress</th>
-      <th rowspan="2">Edit</th>
+      <th>User's Progress</th>
+      <th>Edit</th>
     </tr>
     <tr>
+      <th><span class="glyphicon glyphicon-list-alt"></span></th>
+      <th colspan="3"><span class="glyphicon glyphicon-map-marker"></span></th>
       <th><span class="glyphicon glyphicon-star"></span></th>
       <th><span class="glyphicon glyphicon-ok"></span></th>
       <th><span class="glyphicon glyphicon-fire"></span></th>
       <th><span class="glyphicon glyphicon-time"></span></th>
+      <th><span class="glyphicon glyphicon-road"></span></th>
+      <th><span class="glyphicon glyphicon-edit"></span></th>
     </tr>
 
     <% @user.reviews.each do |review| %>
@@ -69,9 +73,7 @@
        <td rowspan="2"><%= link_to "edit this review", edit_review_path(review) if review.user.id == session[:user_id] || current_user.admin %></td>
       </tr>
       <tr>
-       <td><%= location[1] %></td>
-       <td><%= location[2] %></td>
-       <td><%= location[3] %></td>
+       <td colspan="3"><%= ["Ruby", "Rails", "Sinatra", "CSS", "JS", "HTML", "Rack", "Redux", "React", "CRUD"].sample %></td>
       </tr>
 
 
