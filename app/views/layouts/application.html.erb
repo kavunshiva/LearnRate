@@ -1,5 +1,5 @@
 <head>
-  <%= favicon_link_tag 'favicon.ico' %>
+
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -38,15 +38,14 @@
 
         <% if logged_in? %>
         <ul class="nav navbar-nav navbar-right">
-          <li style="float:right">
+          <li style="float:right"><% string = "<span class='glyphicon glyphicon-log-out'></span>" %>
             <%= link_to logout_path, method: :delete  do %>
             <span class='glyphicon glyphicon-log-out'></span>
             Logout
             <% end %></li>
 
           <% if current_user.admin %>
-          <li  style="float:right"><%= link_to "#{current_user.username} (ADMIN)", "/welcome" %>
-          </li>
+          <li style="float:right"><%= link_to "#{current_user.username} (ADMIN)", "/welcome" %></li>
         <% else %>
           <li style="float:right"><%= link_to "#{current_user.username}", "/welcome" %></li>
           <% end %>
