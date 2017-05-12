@@ -1,24 +1,39 @@
-# README
+# LearnRate
+A ruby on rails application to add ratings/reviews to lessons on Learn.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This was made as a proof of concept, the eventual idea would be to integrate some small parts of this functionality into [Learn.co](https://learn.co/)
 
-Things you may want to cover:
+![LearnRateImage](http://oi67.tinypic.com/egrfro.jpg)
 
-* Ruby version
+## Demo Site
+Click [here](https://murmuring-spire-56141.herokuapp.com/) to see the demo.
 
-* System dependencies
+![LearnRateImage](http://oi64.tinypic.com/29vi0cm.jpg)
 
-* Configuration
+### Installing Locally
 
-* Database creation
+##### Step 1: Clone/download this repo
 
-* Database initialization
 
-* How to run the test suite
+##### Step 2: Run the Postgres database
+Make sure Postgres is running locally on your machine and then run this in terminal:
+```
+rake db:setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+##### Step 3: Run!
+Head over to http://localhost:3000/ in your browser of choice and rate those lessons to your hearts content.
 
-* Deployment instructions
 
-* ...
+## Authors
+
+See the list of [contributors](https://github.com/jonathanandrewsuk/LearnRate/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License
+
+## Acknowledgments
+
+* [Startbootstrap Landing Page Template](https://startbootstrap.com/template-overviews/new-age/)
+* Learn.co and Flatiron School, cheers!
