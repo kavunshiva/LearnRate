@@ -34,4 +34,13 @@ class Rating < ApplicationRecord
     self.time_taken % 60
   end
 
+  def to_hours_minutes_readout(time)
+    "#{time/60} Hours #{time%60} Minutes"
+  end
+
+  def average_time_taken
+    time = Rating.where(review: self.reviews).average(:time_taken).to_f.round(0)
+    to_hours_minutes_readout(time)
+  end
+
 end
