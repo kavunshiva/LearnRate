@@ -7,6 +7,4 @@ class Review < ApplicationRecord
 
   validates :comment, presence: { scope: true, message: "must be entered" }
 
-
-  
 end

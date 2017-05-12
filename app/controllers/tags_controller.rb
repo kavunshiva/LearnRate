@@ -24,16 +24,31 @@ class TagsController < ApplicationController
   end
 
   def edit
+
     @tag = Tag.find_by(id: params[:id])
+
+    if @tag.helper_username.nil?
+      @tag.helper_username = current_user.username
+    else
+      @tag.helper_username = nil
+    end
+
+    @tag.save
+    redirect_to '/help'
+
   end
 
   def update
     @tag = Tag.find_by(id: params[:id])
-    if @tag.update(tag_params)
-      redirect_to @tag
+
+    if @tag.helper_username.nil?
+      @tag.helper_username = current_user.username
     else
-      render :edit
+      @tag.helper_username = nil
     end
+
+    @tag.save
+    redirect_to tags_path
   end
 
   private
