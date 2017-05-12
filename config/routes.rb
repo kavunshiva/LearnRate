@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :users
   resources :sessions
+  resources :tags
 
   root "new_age#index"
   get 'new_age/index', to:"new_age#index"
@@ -12,6 +13,8 @@ Rails.application.routes.draw do
   resources :welcome, only: :index
 
   get '/help', to: "tags#index", as: "help"
+  # get '/pair', to: "tags#edit", as: "pair"
+  # get '/unpair', to: "tags#edit", as: "unpair"
 
   get '/login', to: "new_age#login", as: "login"
   get '/signup', to: "new_age#signup", as: "signup"
