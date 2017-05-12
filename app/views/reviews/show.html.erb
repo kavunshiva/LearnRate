@@ -1,39 +1,92 @@
 <h1><%= link_to @review.lesson.name, "#{@review.lesson.url}" %></h1>
 <% location = @review.lesson.unit_location.split("-").map(&:to_i) %>
-<h4>Module: <%= location[0] %></h4>
-<h4>Subject: <%= location[1] %></h4>
-<h4>Unit: <%= location[2] %></h4>
-<h4>Lesson: <%= location[3] %></h4>
-<h4>Lesson Type: <%= @review.lesson.lesson_type %></h4>
+
+
 
 <p><%= @review.lesson.description %></p>
 <br>
 
 <h2>Review by <%= @review.user.username %></h2>
 
-<table border="2">
+
+<div class="row">
+
+  <div class="col-sm-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">Frustration <span class='glyphicon glyphicon-fire'></span></h3>
+      </div>
+      <div class="panel-body">
+        <h2><%= @review.rating.frustration %> / 10</h2>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Quality <span class='glyphicon glyphicon-star'></span></h3>
+      </div>
+      <div class="panel-body">
+        <h2><%= @review.rating.quality %> / 10</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Helpfulness <span class='glyphicon glyphicon-ok'></span></h3>
+      </div>
+      <div class="panel-body">
+        <h2><%= @review.rating.helpfulness %> / 10</h2>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Time Taken <span class='glyphicon glyphicon-time'></span></h3>
+      </div>
+      <div class="panel-body">
+        <h2><%= @review.rating.to_hours_minutes %></h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br>
+<br>
+Comment: <p><%= @review.comment %></p>Progress: <p><%= @review.tag.progress %></p>
+<br>
+
+<table class="table table-striped">
 
   <tr>
-    <th>Quality</th>
-    <th>Helpfulness</th>
-    <th>Frustration</th>
-    <th>Time Taken</th>
-    <th>Progress</th>
+    <th>Module</th>
+    <th>Subject</th>
+    <th>Unit</th>
+    <th>Lesson</th>
+    <th>Lesson Type</th>
   </tr>
+ <tr>
+   <th><%= location[0] %></th>
+   <th><%= location[1] %></th>
+   <th><%= location[2] %></th>
+   <th><%= location[3] %></th>
+   <th><%= @review.lesson.lesson_type %></th>
+ </tr>
 
-  <tr>
-    <td><%= @review.rating.quality %></td>
-    <td><%= @review.rating.helpfulness %></td>
-    <td><%= @review.rating.frustration %></td>
-    <td><%= @review.rating.to_hours_minutes %></td>
-    <td><%= @review.tag.progress %></td>
-  <tr>
 
 </table>
-<br>
-<br>
-<p>Comment: <%= @review.comment %></p>
-<br>
+
 
 <%= link_to "Edit This Review", edit_review_path(@review) %><br>
 <%= link_to "Go To This Lesson", lesson_path(@review.lesson) %><br>

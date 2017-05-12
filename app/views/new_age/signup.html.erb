@@ -6,18 +6,17 @@
 </p>
 <p>
   <%= form_for @user do |f| %>
-    <h4>Your info:</h4>
     <%= f.label :first_name %><br>
-    <font color="black"><%= f.text_field :first_name %><br></font>
+    <font color="black"><%= f.text_field :first_name, placeholder: "e.g. 'Max'" %><br></font>
     <%= f.label :last_name %><br>
-    <font color="black"><%= f.text_field :last_name %><br><br></font>
-    <h4>Login info:</h4>
-    <%= f.label "Username:" %><br>
-    <font color="black"><%= f.text_field :username %><br></font>
-    <%= f.label "Enter your password:" %><br>
-    <font color="black"><%= f.password_field :password %><br></font>
-    <%= f.label "Confirm your password:" %><br>
-    <font color="black"><%= f.password_field :password_confirmation %></font>
+    <font color="black"><%= f.text_field :last_name, placeholder: "e.g. 'Bearritos'" %><br><br></font>
+    <br>
+    <%= f.label "Username" %><br>
+    <font color="black"><%= f.text_field :username, placeholder: "e.g. 'Maxxy123'" %><br></font>
+    <%= f.label "Enter your password" %><br>
+    <font color="black"><%= f.password_field :password, placeholder: "e.g. 'ILoveRice'" %><br></font>
+    <%= f.label "Confirm your password" %><br>
+    <font color="black"><%= f.password_field :password_confirmation, placeholder: "e.g. 'ILoveRice'" %></font>
     <p>
       <%= f.check_box :admin %> <%= f.label "Admin?" %>
     </p>
