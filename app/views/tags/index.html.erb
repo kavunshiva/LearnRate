@@ -63,6 +63,17 @@
   <% end %>
 </table>
 
+
+
+
+
+
+
+
+
+
+
+
 <table class="table table-striped">
 
   <tr>
@@ -86,7 +97,7 @@
     <th><span class="glyphicon glyphicon-resize-small"></span></th>
   </tr>
 
-  <% @tags.each do |tag| %>
+  <% @tags.sort_by { |tag| tag.id }.each do |tag| %>
   <% location = tag.review.lesson.unit_location.split("-") %>
 
     <% if tag.progress == "Working On" %>
@@ -121,6 +132,13 @@
 </table>
 
 
+
+
+
+
+
+
+
 <table class="table table-striped">
 
   <tr>
@@ -144,7 +162,7 @@
     <th><span class="glyphicon glyphicon-education"></span></th>
   </tr>
 
-  <% @tags.each do |tag| %>
+  <% @tags.sort_by { |tag| tag.id }.each do |tag| %>
   <% location = tag.review.lesson.unit_location.split("-") %>
 
     <% if tag.progress == "Completed" %>
