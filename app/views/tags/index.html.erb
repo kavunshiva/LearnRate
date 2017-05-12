@@ -53,7 +53,9 @@
         <% if tag.helper_username.nil? %>
           <td><%= link_to "Help them out!", edit_tag_path(tag) %></td>
         <% else %>
-          <td><%= link_to "Leave this pairing", edit_tag_path(tag) %></td>
+          <% if tag.helper_username == current_user.username %>
+            <td><%= link_to "Leave this pairing", edit_tag_path(tag) %></td>
+          <% end %>
         <% end %>
       </tr>
 
