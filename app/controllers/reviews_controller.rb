@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    byebug
     @review = Review.new(review_params(:comment))
     @review.user = current_user
     @review.lesson = Lesson.find_by(id: params[:review][:lesson_id])

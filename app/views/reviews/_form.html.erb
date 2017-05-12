@@ -7,53 +7,100 @@
 <% end %>
 
 
-
-
 <%= form_for @review do |f| %>
-
-  <p><%= "Review by #{current_user.username}" %></p>
 
   <p><%= f.collection_select :lesson_id, Lesson.all, :id, :name %></p>
 
   <p><%= f.fields_for :rating do |rating| %></p>
 
-    <h3>Please rate the following from 1 to 10:</h3>
+    <div class="col-sm-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= rating.label :quality %> <span class='glyphicon glyphicon-star'></span></h3>
+        </div>
+        <div class="panel-body">
+          <p><output id="quality_input"><%= @review.rating.present? ? @review.rating.quality : 1 %></output></p>
+          <p><%= rating.range_field :quality, min: 1, max: 10,
+              id: "quality_output", oninput: "quality_input.value = quality_output.value",
+              value: (@review.rating.present? ? @review.rating.quality : 1) %></p>
+        </div>
+      </div>
+    </div>
 
-    <p><%= rating.label :quality %><output id="quality_input"><%= @review.rating.present? ? @review.rating.quality : 1 %></output></p>
-    <p><%= rating.range_field :quality, min: 1, max: 10,
-        id: "quality_output", oninput: "quality_input.value = quality_output.value",
-        value: (@review.rating.present? ? @review.rating.quality : 1) %></p>
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= rating.label :helpfulness %> <span class='glyphicon glyphicon-ok'></span></h3>
+        </div>
+        <div class="panel-body">
+          <p><output id="helpfulness_input"><%= @review.rating.present? ? @review.rating.helpfulness : 1 %></output></p>
+          <p><%= rating.range_field :helpfulness, min: 1, max: 10,
+              id: "helpfulness_output", oninput: "helpfulness_input.value = helpfulness_output.value",
+              value: (@review.rating.present? ? @review.rating.helpfulness : 1) %></p>
+        </div>
+      </div>
+    </div>
 
-    <p><%= rating.label :helpfulness %><output id="helpfulness_input"><%= @review.rating.present? ? @review.rating.helpfulness : 1 %></output></p>
-        <p><%= rating.range_field :helpfulness, min: 1, max: 10,
-            id: "helpfulness_output", oninput: "helpfulness_input.value = helpfulness_output.value",
-            value: (@review.rating.present? ? @review.rating.helpfulness : 1) %></p>
+    <div class="col-sm-6">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= rating.label :frustration %> <span class="glyphicon glyphicon-fire"></span></h3>
+        </div>
+        <div class="panel-body">
+          <p><output id="frustration_input"><%= @review.rating.present? ? @review.rating.frustration : 1 %></output></p>
+          <p><%= rating.range_field :frustration, min: 1, max: 10,
+            id: "frustration_output", oninput: "frustration_input.value = frustration_output.value",
+            value: (@review.rating.present? ? @review.rating.frustration : 1) %></p>
+        </div>
+      </div>
+    </div>
 
-    <p><%= rating.label :frustration %><output id="frustration_input"><%= @review.rating.present? ? @review.rating.frustration : 1 %></output></p>
-    <p><%= rating.range_field :frustration, min: 1, max: 10,
-        id: "frustration_output", oninput: "frustration_input.value = frustration_output.value",
-        value: (@review.rating.present? ? @review.rating.frustration : 1) %></p>
+    <div class="col-sm-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= rating.label "Completion Time" %> <span class="glyphicon glyphicon-time"></span></h3>
+        </div>
+        <div class="panel-body">
+          <p></p>
+          <p>Hours: <%= rating.number_field :time_taken_hours, style: "width: 2em",
+               value: (@review.rating.present? ? @review.rating.to_only_hours : 0) %>
+             Minutes: <%= rating.number_field :time_taken_minutes, style: "width: 2em",
+               value: (@review.rating.present? ? @review.rating.to_only_minutes : 0) %></p>
+        </div>
+      </div>
+    </div>
 
-    <p><%= rating.label "Completion Time" %></p>
-    <p>Hours: <%= rating.number_field :time_taken_hours,
-         value: (@review.rating.present? ? @review.rating.to_only_hours : 1) %>
-       Minutes: <%= rating.number_field :time_taken_minutes,
-         value: (@review.rating.present? ? @review.rating.to_only_minutes : 1) %></p>
 
   <% end %>
+
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= f.label :comment %> <span class="glyphicon glyphicon-comment"></span></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= f.text_area :comment, cols: "70%", rows: "3" %></p>
+      </div>
+    </div>
+  </div>
 
   <p><%= f.fields_for :tag do |tag| %></p>
 
-
-    <p><%= tag.label :progress %> <%= tag.select :progress, ["Need Help","Working On","Completed"],
-           value: (@review.rating.present? ? @review.tag.progress : 1)  %></p>
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= tag.label :progress %> <span class="glyphicon glyphicon-road"></span></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= tag.select :progress, ["Need Help","Working On","Completed"],
+        value: (@review.rating.present? ? @review.tag.progress : 1)  %></p>
+      </div>
+    </div>
+  </div>
 
   <% end %>
 
-  <p><%= f.label :comment %></p>
-  <p><%= f.text_area :comment %></p>
-
-
+  <p></p>
 
   <p><%= f.submit %></p>
 
