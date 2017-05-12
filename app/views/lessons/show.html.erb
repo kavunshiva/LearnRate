@@ -65,7 +65,7 @@
 
 
 
-  <h3><%= link_to "Review this lesson", :class =>'btn btn-outline', controller: "reviews", action: "new", lesson_id: @lesson.id %><br></h3>
+  <h3><%= link_to "Review this lesson", controller: "reviews", action: "new", lesson_id: @lesson.id %><br></h3>
   <%= link_to "Edit this lesson", edit_lesson_path(@lesson) if current_user.admin %><br>
   <%= link_to "Back to All Lessons", lessons_path %>
 
