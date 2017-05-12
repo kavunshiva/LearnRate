@@ -6,21 +6,13 @@
 
 <div class="jumbotron">
 
-  <table class="table table-striped">
+    <h1><%= link_to "Hey there, #{@current_user.first_name}!", user_path(@current_user) %> </h1>
 
   <tr>
-    <th colspan="3"><%= link_to "Hey there #{@current_user.first_name}! Here's Your Progress:", user_path(@current_user) %></th>
-  </tr>
-  <tr>
-    <th bgcolor="FFAAAA">Lessons Needing Help</th>
-    <th bgcolor="FFFF00">Lessons Working On</th>
-    <th bgcolor="AAFFAA">Completed Lessons</th>
-  </tr>
-
-  <tr>
-   <td bgcolor="FF5555"><%= @current_user.reviews.all.count { |review| review.tag.progress == "Need Help" } %></td>
-   <td bgcolor="FFFF00"><%= @current_user.reviews.all.count { |review| review.tag.progress == "Working On" } %></td>
-   <td bgcolor="55FF55"><%= @current_user.reviews.all.count { |review| review.tag.progress == "Completed" } %></td>
+    <h3>A little info about you:</h3>
+    <h2>Need help on <%= @current_user.reviews.all.count { |review| review.tag.progress == "Need Help" } %> lessons<br></h2>
+    <h2>Are working on <%= @current_user.reviews.all.count { |review| review.tag.progress == "Working On" } %> lessons<br></h2>
+    <h2>Completed <%= @current_user.reviews.all.count { |review| review.tag.progress == "Completed" } %> lessons<br></h2>
   </tr>
 
   </table>
@@ -29,11 +21,14 @@
 
   <br>
 
-  <h3>I know what you're thinking....how do I review a lab?</h3>
+
+  <div class="alert alert-dismissible alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
 
   <div class="panel panel-default">
-    <div class="panel-body">
 
+    <div class="panel-body">
+<h2>I know what you're thinking....how do I review a lab?</h2>
       <h4><h3>Frustration:</h3> Did you drop the F-Bomb? Were you tempted to delete tests in the spec file?<h4>
       <h4><h3>Quality:</h3> Did you find bugs? Were they easy to squash?<h4>
       <h4><h3>Helpfulness:</h3> Did you learn new concepts that could be applied elsewhere?<h4>
@@ -43,6 +38,6 @@
           <a href="reviews/new" class="btn btn-primary btn-lg">Make a Review</a>
         </p>
   </div>
-
+  </div>
 
 </div>

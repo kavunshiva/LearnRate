@@ -5,11 +5,11 @@
 </a>
 </p>
 <p>
-<h1>Log In</h1>
 
 <%= form_tag :sessions do %>
   <%= label_tag :username %><br>
   <font color="black"><%= text_field_tag :username %><br></font>
+  <br>
   <%= label_tag :password %><br>
   <font color="black"><%= password_field_tag :password %><br></font><br>
   <%= submit_tag "Log In", :class =>'btn btn-outline'%><br></font>
