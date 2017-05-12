@@ -39,7 +39,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
 gem 'frontend-generators'
 gem 'jquery-rails'
-gem 'mechanize'
 
 
 group :development, :test do
@@ -73,6 +72,7 @@ group :production do
   gem "pg"
   gem "google-analytics-rails"
   gem "rails_12factor"
+  gem 'httparty'
 end
 
 gem "bootstrap-sass", "~> 3.1.1"
