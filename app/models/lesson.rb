@@ -11,21 +11,20 @@ class Lesson < ApplicationRecord
   validates_format_of :unit_location, :with => /\d{2}-\d{2}-\d{2}-\d{2}/, message: "must be formatted as ##-##-##-##"
 
   def average_time_taken
-
     time = Rating.where(review: self.reviews).average(:time_taken).to_f.round(0)
     to_hours_minutes_readout(time)
   end
 
   def average_helpfulness
-    Rating.where(review: self.reviews).average(:helpfulness).to_f.round(1)
+    Rating.where(review: self.reviews).average(:helpfulness).to_f.round(0)
   end
 
   def average_frustration
-    Rating.where(review: self.reviews).average(:frustration).to_f.round(1)
+    Rating.where(review: self.reviews).average(:frustration).to_f.round(0)
   end
 
   def average_quality
-    Rating.where(review: self.reviews).average(:quality).to_f.round(1)
+    Rating.where(review: self.reviews).average(:quality).to_f.round(0)
   end
 
   def to_hours_minutes_readout(time)
