@@ -6,10 +6,11 @@
   </ul>
 <% end %>
 
-
+<div class="container">
 <%= form_for @review do |f| %>
 
   <p><%= f.collection_select :lesson_id, Lesson.all, :id, :name %></p>
+
 
   <p><%= f.fields_for :rating do |rating| %></p>
 
@@ -94,14 +95,16 @@
       <div class="panel-body">
         <p><%= tag.select :progress, ["Need Help","Working On","Completed"],
         value: (@review.rating.present? ? @review.tag.progress : 1)  %></p>
+
       </div>
+
     </div>
+    <%= f.submit %>
   </div>
 
+</div>
   <% end %>
 
-  <p></p>
 
-  <p><%= f.submit %></p>
 
 <% end %>
