@@ -37,11 +37,11 @@
    <td rowspan="2"><%= review.rating.time_taken %></td>
 
    <% if review.tag.progress == "Need Help" %>
-      <td rowspan="2" bgcolor="FF5555"><%= review.tag.progress %></td>
+      <td rowspan="2" bgcolor="EC644B"><%= review.tag.progress %></td>
    <% elsif review.tag.progress == "Working On" %>
-      <td rowspan="2" bgcolor="FFFF00"><%= review.tag.progress %></td>
+      <td rowspan="2" bgcolor="F5D76E"><%= review.tag.progress %></td>
    <% elsif review.tag.progress == "Completed" %>
-      <td rowspan="2" bgcolor="55FF55"><%= review.tag.progress %></td>
+      <td rowspan="2" bgcolor="C8F7C5"><%= review.tag.progress %></td>
    <% else %>
       <td rowspan="2"><%= review.tag.progress %></td>
    <% end %>
