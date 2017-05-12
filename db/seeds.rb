@@ -1,6 +1,6 @@
-require 'HTTParty'
-require 'nokogiri'
-require 'json'
+# require 'HTTParty'
+# require 'nokogiri'
+# require 'json'
 
 url = 'https://api.github.com/organizations/8825476/repos?page='
 number_of_repo_pages_from_which_to_create_lessons = 10
